@@ -257,6 +257,71 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 #navbar.scrolled .btn-theme:hover, #navbar.scrolled .btn-search-toggle:hover {
   background: var(--blue-50); color: var(--primary);
 }
+
+
+/* ── Disclaimer Marquee ───────────────────────────────────── */
+#disclaimer-marquee {
+  background: rgba(10,22,40,.92);
+  border-bottom: 1px solid rgba(201,162,39,.25);
+  padding: 8px 0;
+  overflow: hidden;
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  z-index: 999;
+  backdrop-filter: blur(8px);
+}
+
+#disclaimer-marquee .marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+#disclaimer-marquee .marquee-track:hover {
+  animation-play-state: paused;
+}
+
+#disclaimer-marquee .marquee-text {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  white-space: nowrap;
+  padding: 0 80px;
+  font-size: .78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.75);
+  letter-spacing: .03em;
+}
+
+#disclaimer-marquee .marquee-text i {
+  color: var(--gold-lt);
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+
+#disclaimer-marquee .marquee-text strong {
+  color: var(--gold-lt);
+  font-weight: 700;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Push content below marquee */
+#home {
+  padding-top: 36px;
+}
+
+@media (max-width: 768px) {
+  #disclaimer-marquee .marquee-text {
+    font-size: .72rem;
+    padding: 0 48px;
+  }
+}
 /* ── Hamburger Button Responsive Fix ───────────────────── */
 
 .btn-hamburger{
