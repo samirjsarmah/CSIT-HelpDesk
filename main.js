@@ -160,14 +160,14 @@ function filterTable() {
   });
 }
 
-/* ── Dynamic Visitor Counter (GitHub Pages) ────────────── */
+/* ── Real Visitor Counter ─────────────────────────────── */
 
 async function initVisitors() {
 
   try {
 
     const namespace = "cotton-university-csit";
-    const key = "main-site";
+    const key = "website-visits";
 
     /* Increase Total Visitor Count */
     const response = await fetch(
@@ -178,28 +178,24 @@ async function initVisitors() {
 
     const totalVisitors = data.value || 1;
 
-    /* Daily Visitors */
-    const todayKey = new Date().toISOString().split("T")[0];
+    /* Daily Visitors Counter */
+    const today = new Date().toISOString().split("T")[0];
 
     const todayResponse = await fetch(
-      `https://api.countapi.xyz/hit/${namespace}/${todayKey}`
+      `https://api.countapi.xyz/hit/${namespace}/${today}`
     );
 
     const todayData = await todayResponse.json();
 
     const todayVisitors = todayData.value || 1;
 
-    /* Online Users */
-    let onlineUsers = Math.floor(todayVisitors / 5);
+    /* Online Users Estimate */
+    const onlineUsers = Math.max(1, Math.floor(todayVisitors / 3));
 
-    if (onlineUsers < 1) {
-      onlineUsers = 1;
-    }
-
-    /* Total Page Views */
+    /* Page Views */
     const totalPages = totalVisitors * 3;
 
-    /* Animate */
+    /* Display */
     animateCount("count-total", totalVisitors, 1800);
     animateCount("count-today", todayVisitors, 1400);
     animateCount("count-online", onlineUsers, 1000);
@@ -209,17 +205,11 @@ async function initVisitors() {
 
     console.log("Visitor counter error:", error);
 
-    /* Fallback */
-    animateCount("count-total", 1, 1000);
-    animateCount("count-today", 1, 1000);
-    animateCount("count-online", 1, 1000);
-    animateCount("count-pages", 3, 1000);
-
   }
 
 }
 
-/* ── Counter Animation ─────────────────────────────────── */
+/* ── Counter Animation ───────────────────────────────── */
 
 function animateCount(id, target, duration) {
 
@@ -253,30 +243,13 @@ function animateCount(id, target, duration) {
 
 }
 
-/* ── Start Counter When Section Visible ────────────────── */
+/* ── Start Counter ───────────────────────────────────── */
 
-const visitorSection = document.getElementById("visitors");
+window.addEventListener("load", () => {
 
-if (visitorSection) {
+  initVisitors();
 
-  const visitorObserver = new IntersectionObserver((entries) => {
-
-    if (entries[0].isIntersecting) {
-
-      initVisitors();
-
-      visitorObserver.disconnect();
-
-    }
-
-  }, {
-    threshold: 0.3
-  });
-
-  visitorObserver.observe(visitorSection);
-
-}
-
+});
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
 const track = document.querySelector('.testimonials-track');
