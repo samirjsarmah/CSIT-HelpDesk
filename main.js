@@ -158,53 +158,29 @@ function filterTable() {
   });
 }
 
-/* ── Visitor Counter (GitHub Pages compatible) ──────── */
-/* countapi.xyz shut down in 2023 — this uses localStorage  */
-/* with a realistic base offset. Works on any static host.  */
+/* ── Visitor Counter ─────────────────────────────────────── */
+const COUNTER_NS = 'cotton-csit-helpdesk';
 
-function initVisitors() {
-  const BASE_TOTAL  = 4820;  // adjust to your liking
-  const BASE_TODAY  = 38;
-  const today = new Date().toDateString();
-
-  // Total — persisted per browser
-  let total = parseInt(
-    localStorage.getItem('cu_total') || String(BASE_TOTAL)
-  );
-  total += 1;
-  localStorage.setItem('cu_total', String(total));
-
-  // Daily — resets each new calendar day
-  let todayV = parseInt(
-    localStorage.getItem('cu_today_count') || '0'
-  );
-  const lastDay = localStorage.getItem('cu_today_date');
-  if (lastDay !== today) {
-    todayV = BASE_TODAY;
-    localStorage.setItem('cu_today_date', today);
+async function initVisitors() {
+  try {
+    const res  = await fetch(
+      `https://api.counterapi.dev/v1/${COUNTER_NS}/total-visitors/up`
+    );
+    const data = await res.json();
+    const total = data.count || 1;
+    animateCount('count-total', total, 1800);
+  } catch (err) {
+    console.warn('Counter error:', err);
+    const fallback = parseInt(localStorage.getItem('cu_total') || '4820');
+    animateCount('count-total', fallback, 1800);
   }
-  todayV += 1;
-  localStorage.setItem('cu_today_count', String(todayV));
-
-  // Pages — session only
-  let pages = parseInt(sessionStorage.getItem('cu_pages') || '0');
-  pages += Math.floor(Math.random() * 3) + 1;
-  sessionStorage.setItem('cu_pages', String(pages));
-
-  // Online — random realistic range
-  const online = Math.floor(Math.random() * 18) + 6;
-
-  animateCount('count-total',  total,      1800);
-  animateCount('count-today',  todayV,     1400);
-  animateCount('count-online', online,     1000);
-  animateCount('count-pages',  pages + 40, 1600);
 }
 
 function animateCount(id, target, duration) {
   const el = document.getElementById(id);
   if (!el) return;
   const start = performance.now();
-  const ease = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
+  const ease  = t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   function step(now) {
     const p = Math.min((now - start) / duration, 1);
     el.textContent = Math.floor(ease(p) * target).toLocaleString();
@@ -214,15 +190,16 @@ function animateCount(id, target, duration) {
   requestAnimationFrame(step);
 }
 
-/* Trigger when the visitors section scrolls into view */
 const visitorObs = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     initVisitors();
     visitorObs.disconnect();
   }
 }, { threshold: 0.3 });
+
 const visitorsSection = document.getElementById('visitors');
 if (visitorsSection) visitorObs.observe(visitorsSection);
+
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
 const track = document.querySelector('.testimonials-track');
