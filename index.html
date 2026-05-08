@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official Help Desk of the Department of Computer Science & Information Technology, Cotton University, Guwahati, Assam." />
+  <meta name="keywords" content="Cotton University, CS IT Help Desk, BCA, BSc Computer Science, MCA, CPGEE, Guwahati, Assam" />
+  <meta name="author" content="Cotton University CSIT Department" />
+  <title>CS &amp; IT Help Desk | Cotton University</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e4d94'/><text y='.9em' font-size='65' x='50%' text-anchor='middle' font-family='serif' fill='white'>C</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-crest"></div>
+  <div class="loader-text">Cotton University · CS &amp; IT</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION BAR
+════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-brand">
+   <div class="nav-logo">
+  <img src="logo.png" alt="Cotton University Logo">
+</div>
+    <div class="nav-brand-text">
+      <strong>Cotton University</strong>
+      <span>CS &amp; IT Help Desk</span>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#cutoff">Cutoff</a></li>
+    <li><a href="#syllabus">Syllabus</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="btn-search-toggle" id="search-toggle" aria-label="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <button class="btn-theme" id="theme-toggle" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <button class="btn-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav Drawer -->
+<div id="mobile-nav">
+  <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+  <a href="#courses"><i class="fa-solid fa-graduation-cap"></i> Courses</a>
+  <a href="#cutoff"><i class="fa-solid fa-chart-bar"></i> Cutoff</a>
+  <a href="#syllabus"><i class="fa-solid fa-book-open"></i> Syllabus</a>
+  <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+  <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+</div>
+
+<!-- Search Overlay -->
+<div id="search-overlay">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="search-input" placeholder="Search courses, CPGEE, syllabus, faculty…" autofocus />
+    </div>
+    <p class="search-close" id="search-close">Press Esc or click here to close</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO / HOME
+════════════════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-dots"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge reveal">
+        <i class="fa-solid fa-star"></i>
+        NAAC Accredited · A Grade University
+      </div>
+
+      <h1 class="hero-title reveal">
+        Department of<br />
+        <span class="highlight">Computer Science</span><br />
+        &amp; Information Technology
+      </h1>
+
+      <p class="hero-sub reveal">
+        Cotton University, Guwahati — one of North‑East India's premier institutions.
+        Explore programs, resources, and expert academic guidance all in one place.
+      </p>
+
+      <div class="hero-typing reveal" id="typing-text"></div>
+
+      <div class="hero-btns reveal">
+        <a href="#courses" class="btn-primary">
+          <i class="fa-solid fa-graduation-cap"></i> Explore Courses
+        </a>
+      </div>
+    </div>
+
+    
+  </div>
+
+  <div class="scroll-indicator">
+    <i class="fa-solid fa-chevron-down"></i>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     QUICK ACCESS CARDS
+════════════════════════════════════════════════════════ -->
+<section id="quick-access">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Programs Offered</span>
+      <h2 class="section-title">Choose Your Path</h2>
+      <div class="divider"></div>
+     
+    </div>
+
+    <div class="quick-cards">
+      <!-- BCA -->
+      <div class="quick-card bca reveal">
+        <div class="qc-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="qc-title">BCA</div>
+        <div class="qc-sub">Bachelor of Computer Applications</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 3 Years · 6 Semesters (Regular)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:1rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours with Research)</div>
+        <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6">
+          A comprehensive undergraduate program covering programming, databases, networking, and software development.
+        </p>
+        <a href="#courses" class="qc-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- B.Sc CS -->
+      <div class="quick-card bsc reveal" style="transition-delay:.1s">
+        <div class="qc-icon"><i class="fa-solid fa-microchip"></i></div>
+        <div class="qc-title">B.Sc Computer Science</div>
+        <div class="qc-sub">Bachelor of Science in CS</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 3 Years · 6 Semesters (Regular)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:1rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours with Research)</div>
+        <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6">
+          Strong theoretical foundation in algorithms, mathematics, AI, and systems programming for science‑oriented learners.
+        </p>
+        <a href="#courses" class="qc-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- MCA -->
+      <div class="quick-card mca reveal" style="transition-delay:.2s">
+        <div class="qc-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="qc-title">MCA</div>
+        <div class="qc-sub">Master of Computer Applications</div>
+        <div class="qc-badge" style="display:block;margin-bottom:1rem"><i class="fa-solid fa-clock"></i> 2 Years · 4 Semesters</div>
+        <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:.6rem;line-height:1.6">
+          Advanced postgraduate program in software engineering, cloud computing, data science, and enterprise systems.
+        </p>
+        <p style="font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:1rem">
+          <i class="fa-solid fa-file-pen"></i> Admission via CPGEE 
+        </p>
+        <a href="#courses" class="qc-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     COURSES SECTION
+════════════════════════════════════════════════════════ -->
+<section id="courses">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Academic Programs</span>
+      <h2 class="section-title">Course Details</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Complete information about eligibility, intake, semester subjects, and career opportunities.</p>
+    </div>
+
+    <div class="course-tabs">
+      <button class="tab-btn active" data-tab="bca">BCA</button>
+      <button class="tab-btn" data-tab="bsc">B.Sc Computer Science</button>
+      <button class="tab-btn" data-tab="mca">MCA</button>
+    </div>
+
+    <!-- ── BCA Panel ── -->
+    <div class="course-panel active" id="panel-bca">
+      <div class="course-grid reveal">
+        <div class="course-info-card">
+          <div class="cic-header">
+            <h3>BCA</h3>
+            <p>Bachelor of Computer Applications</p>
+          </div>
+          <div class="cic-body">
+            <div class="info-row"><span class="label">Duration</span><span class="value">3 Yrs / 4 Yrs (Honours)</span></div>
+            <div class="info-row"><span class="label">Semesters</span><span class="value">6 (Regular) · 8 (Honours)</span></div>
+            <div class="info-row"><span class="label">Eligibility</span><span class="value">10+2 any stream with Mathematics</span></div>
+            <div class="info-row"><span class="label">Intake</span><span class="value">30 Seats</span></div>
+            <div class="info-row"><span class="label">Admission</span><span class="value"> Merit Based</span></div>
+            <div class="info-row"><span class="label">Degree</span><span class="value">Cotton University</span></div>
+            <div class="info-row"><span class="label">Medium</span><span class="value">English</span></div>
+          </div>
+        </div>
+        <div class="course-details">
+          <div class="detail-card">
+            <h4><i class="fa-solid fa-info-circle"></i> Course Overview</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7">
+              BCA (Bachelor of Computer Applications) is an undergraduate program available in 3‑year (Regular), 4‑year Honours, and 4‑year Honours with Research variants under the NEP framework. It equips students with fundamental to advanced computing skills through theory, lab sessions, project work, and industry internships covering programming, databases, web technologies, networking, and software engineering.
+            </p>
+          </div>
+          
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- ── B.Sc CS Panel ── -->
+    <div class="course-panel" id="panel-bsc">
+      <div class="course-grid reveal">
+        <div class="course-info-card">
+          <div class="cic-header" style="background:linear-gradient(135deg,#065f46,#059669)">
+            <h3>B.Sc Computer Science</h3>
+            <p>Bachelor of Science in Computer Science</p>
+          </div>
+          <div class="cic-body">
+            <div class="info-row"><span class="label">Duration</span><span class="value">3 Yrs / 4 Yrs (Honours)</span></div>
+            <div class="info-row"><span class="label">Semesters</span><span class="value">6 (Regular) · 8 (Honours)</span></div>
+            <div class="info-row"><span class="label">Eligibility</span><span class="value">10+2 with Physics, Chemistry, Math</span></div>
+            <div class="info-row"><span class="label">Intake</span><span class="value">30 Seats</span></div>
+            <div class="info-row"><span class="label">Admission</span><span class="value">CUET UG / Merit Based</span></div>
+            <div class="info-row"><span class="label">Degree</span><span class="value">Cotton University</span></div>
+            <div class="info-row"><span class="label">Medium</span><span class="value">English</span></div>
+          </div>
+        </div>
+        <div class="course-details">
+          <div class="detail-card">
+            <h4><i class="fa-solid fa-info-circle"></i> Course Overview</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7">
+              B.Sc Computer Science offers a rigorous science‑based curriculum with strong emphasis on mathematical foundations, algorithm analysis, AI, machine learning, and computational theory. Available in Regular (3-year/6-semester), Honours (4-year/8-semester), and Honours with Research variants under NEP. Students gain deep conceptual understanding alongside practical programming skills suitable for research or industry.
+            </p>
+          </div>
+         
+          
+              </div>
+      </div>
+    </div>
+
+    <!-- ── MCA Panel ── -->
+    <div class="course-panel" id="panel-mca">
+      <div class="course-grid reveal">
+        <div class="course-info-card">
+          <div class="cic-header" style="background:linear-gradient(135deg,#92400e,#c9a227)">
+            <h3>MCA</h3>
+            <p>Master of Computer Applications</p>
+          </div>
+          <div class="cic-body">
+            <div class="info-row"><span class="label">Duration</span><span class="value">2 Years (4 Semesters)</span></div>
+            <div class="info-row"><span class="label">Eligibility</span><span class="value">BCA / B.Sc CS / B.Sc IT or any Graduate with Math</span></div>
+            <div class="info-row"><span class="label">Intake</span><span class="value">40 Seats</span></div>
+            <div class="info-row"><span class="label">Primary Entrance</span><span class="value">CPGEE (Cotton University)</span></div>
+            <div class="info-row"><span class="label">Also Accepted</span><span class="value">NIMCET / CUET PG</span></div>
+            <div class="info-row"><span class="label">Degree</span><span class="value">Cotton University</span></div>
+            <div class="info-row"><span class="label">Medium</span><span class="value">English</span></div>
+          </div>
+        </div>
+
+        <div class="course-details">
+          <div class="detail-card">
+            <h4><i class="fa-solid fa-info-circle"></i> Course Overview</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7">
+              MCA is a 2‑year postgraduate program that prepares students for senior technical and managerial roles in the IT industry. It covers advanced software engineering, distributed systems, cloud infrastructure, data science, and enterprise application development with strong emphasis on research and industry projects.
+            </p>
+          </div>
+
+          <!-- CPGEE Highlighted Info Card -->
+          <div class="detail-card" style="border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(201,162,39,.04),var(--surface))">
+            <h4><i class="fa-solid fa-file-pen" style="color:var(--gold)"></i> CPGEE — Primary Admission Entrance</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem">
+              <strong style="color:var(--text)">CPGEE (Cotton University Post Graduate Entrance Examination)</strong> is the primary entrance test for MCA admission, conducted by Cotton University typically in May–June each year.
+            </p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.85rem">
+              <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:.85rem">
+                <div style="font-size:.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem">Exam Mode</div>
+                <div style="font-size:.9rem;font-weight:700;color:var(--text)">Offline (OMR Based)</div>
+              </div>
+              <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:.85rem">
+                <div style="font-size:.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem">Duration</div>
+                <div style="font-size:.9rem;font-weight:700;color:var(--text)">2 Hours</div>
+              </div>
+              <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:.85rem">
+                <div style="font-size:.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem">Total Marks</div>
+                <div style="font-size:.9rem;font-weight:700;color:var(--text)">200 Marks (MCQ)</div>
+              </div>
+              <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:.85rem">
+                <div style="font-size:.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem">Negative Marking</div>
+                <div style="font-size:.9rem;font-weight:700;color:var(--text)">−0.25 per wrong</div>
+              </div>
+            </div>
+            
+          </div>
+
+          
+
+         
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CUTOFF SECTION
+════════════════════════════════════════════════════════ -->
+<section id="cutoff">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Admission Data</span>
+      <h2 class="section-title">Previous Year Cutoff Marks</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Category-wise cutoff based on CUET / CPGEE scores and merit. Data shown for 2023–24 academic year.</p>
+    </div>
+
+    <div class="cutoff-controls reveal">
+      <div class="filter-group">
+        <button class="filter-btn active" data-cat="all">All Categories</button>
+        <button class="filter-btn" data-cat="gen">General</button>
+        <button class="filter-btn" data-cat="obc">OBC</button>
+        <button class="filter-btn" data-cat="sc">SC</button>
+        <button class="filter-btn" data-cat="st">ST</button>
+      </div>
+      <input type="text" class="search-input" id="cutoff-search" placeholder="🔍  Search" />
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="cutoff-table">
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th>Category</th>
+            <th>Year</th>
+            <th>Score</th>
+            <th>% Equivalent</th>
+            <th>Exam</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-cat="gen"><td><strong>BCA</strong></td><td><span class="cat-badge gen">General</span></td><td>2023–24</td><td>560 / 800</td><td>70%</td><td>CUET UG</td><td>High Competition</td></tr>
+          <tr data-cat="obc"><td><strong>BCA</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2023–24</td><td>504 / 800</td><td>63%</td><td>CUET UG</td><td>Moderate</td></tr>
+          <tr data-cat="sc"><td><strong>BCA</strong></td><td><span class="cat-badge sc">SC</span></td><td>2023–24</td><td>440 / 800</td><td>55%</td><td>CUET UG</td><td>Reserved</td></tr>
+          <tr data-cat="st"><td><strong>BCA</strong></td><td><span class="cat-badge st">ST</span></td><td>2023–24</td><td>400 / 800</td><td>50%</td><td>CUET UG</td><td>Reserved</td></tr>
+          <tr data-cat="gen"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge gen">General</span></td><td>2023–24</td><td>592 / 800</td><td>74%</td><td>CUET UG</td><td>High Competition</td></tr>
+          <tr data-cat="obc"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2023–24</td><td>520 / 800</td><td>65%</td><td>CUET UG</td><td>Moderate</td></tr>
+          <tr data-cat="sc"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge sc">SC</span></td><td>2023–24</td><td>456 / 800</td><td>57%</td><td>CUET UG</td><td>Reserved</td></tr>
+          <tr data-cat="st"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge st">ST</span></td><td>2023–24</td><td>416 / 800</td><td>52%</td><td>CUET UG</td><td>Reserved</td></tr>
+          <tr data-cat="gen"><td><strong>MCA</strong></td><td><span class="cat-badge gen">General</span></td><td>2023–24</td><td>148 / 200</td><td>74%</td><td>CPGEE</td><td>Very Competitive</td></tr>
+          <tr data-cat="obc"><td><strong>MCA</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2023–24</td><td>130 / 200</td><td>65%</td><td>CPGEE</td><td>Competitive</td></tr>
+          <tr data-cat="sc"><td><strong>MCA</strong></td><td><span class="cat-badge sc">SC</span></td><td>2023–24</td><td>110 / 200</td><td>55%</td><td>CPGEE</td><td>Reserved</td></tr>
+          <tr data-cat="st"><td><strong>MCA</strong></td><td><span class="cat-badge st">ST</span></td><td>2023–24</td><td>96 / 200</td><td>48%</td><td>CPGEE</td><td>Reserved</td></tr>
+          <tr data-cat="gen"><td><strong>MCA</strong></td><td><span class="cat-badge gen">General</span></td><td>2023–24</td><td>640 / 800</td><td>80%</td><td>NIMCET / CUET PG</td><td>Alternative Entrance</td></tr>
+          <tr data-cat="obc"><td><strong>MCA</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2023–24</td><td>576 / 800</td><td>72%</td><td>NIMCET / CUET PG</td><td>Alternative Entrance</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+      Cutoff data is indicative. MCA cutoffs are primarily based on CPGEE scores (out of 200). Official data is published on the Cotton University admission portal.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SYLLABUS SECTION
+════════════════════════════════════════════════════════ -->
+<section id="syllabus">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Academic Content</span>
+      <h2 class="section-title">Syllabus &amp; Curriculum</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Download semester-wise syllabi in PDF format. Click any card to expand subject details.</p>
+    </div>
+
+    <div class="syllabus-grid">
+
+      <!-- BCA Sem 1-2 -->
+      <div class="syl-card reveal">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon blue"><i class="fa-solid fa-laptop-code"></i></div>
+            <div>
+              <div class="syl-title">BCA</div>
+              <div class="syl-sem"></div>
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+        
+          <div class="syl-actions">
+            <button class="btn-download"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+          </div>
+        </div>
+      </div>
+
+     
+
+      <!-- B.Sc CS -->
+      <div class="syl-card reveal" style="transition-delay:.2s">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon green"><i class="fa-solid fa-microchip"></i></div>
+            <div>
+              <div class="syl-title">B.Sc CS </div>
+              <div class="syl-sem"></div>
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+          
+          <div class="syl-actions">
+            <button class="btn-download"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCA -->
+      <div class="syl-card reveal" style="transition-delay:.24s">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon gold"><i class="fa-solid fa-server"></i></div>
+            <div>
+              <div class="syl-title">MCA </div>
+              <div class="syl-sem"></div>
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+          
+          <div class="syl-actions">
+            <button class="btn-download"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ★ CPGEE Entrance Syllabus ★ -->
+      <div class="syl-card reveal" style="transition-delay:.3s; border-top:3px solid var(--gold);">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon" style="background:linear-gradient(135deg,#92400e,#c9a227);color:#fff">
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <div>
+              <div class="syl-title">CPGEE Entrance Syllabus</div>
+             
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+
+          <!-- Pattern summary -->
+          <div style="margin:1rem 1.5rem .5rem;padding:.9rem 1.1rem;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.3);border-radius:10px;font-size:.82rem;color:var(--text-muted);line-height:1.7">
+            <strong style="color:var(--text);display:block;margin-bottom:.3rem">
+              <i class="fa-solid fa-clipboard-list" style="color:var(--gold);margin-right:.4rem"></i>Exam Pattern at a Glance
+            </strong>
+            200 MCQ Questions &nbsp;·&nbsp; 200 Total Marks &nbsp;·&nbsp; Duration: 2 Hours &nbsp;·&nbsp;
+            Negative Marking: −0.25 per wrong answer &nbsp;·&nbsp; Mode: Offline OMR Sheet &nbsp;·&nbsp; Language: English
+          </div>
+
+          <!-- Sec A -->
+          <div style="padding:.75rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)">
+            <i class="fa-solid fa-square-root-variable" style="margin-right:.35rem"></i>
+            Section A — Mathematics &nbsp;<span style="font-weight:400;color:var(--text-muted)">(50 Marks)</span>
+          </div>
+          <div class="syl-subjects">
+            <div class="syl-subject-item"><span class="sub-name">Sets, Relations &amp; Functions</span><span class="sub-code">MATH-01</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Matrices &amp; Determinants</span><span class="sub-code">MATH-02</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Differential Calculus</span><span class="sub-code">MATH-03</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Integral Calculus</span><span class="sub-code">MATH-04</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Linear Algebra — Vectors &amp; Spaces</span><span class="sub-code">MATH-05</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Probability &amp; Statistics</span><span class="sub-code">MATH-06</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Number Theory &amp; Combinatorics</span><span class="sub-code">MATH-07</span></div>
+          </div>
+
+          <!-- Sec B -->
+          <div style="padding:.5rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#2563b0">
+            <i class="fa-solid fa-laptop-code" style="margin-right:.35rem"></i>
+            Section B — Computer Fundamentals &amp; Programming &nbsp;<span style="font-weight:400;color:var(--text-muted)">(60 Marks)</span>
+          </div>
+          <div class="syl-subjects">
+            <div class="syl-subject-item"><span class="sub-name">Basics of Computer Organisation &amp; Architecture</span><span class="sub-code">CS-01</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Number Systems (Binary, Octal, Hexadecimal)</span><span class="sub-code">CS-02</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Boolean Algebra &amp; Logic Gates</span><span class="sub-code">CS-03</span></div>
+            <div class="syl-subject-item"><span class="sub-name">C Programming — Fundamentals &amp; Control Flow</span><span class="sub-code">CS-04</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Arrays, Strings, Pointers &amp; Functions</span><span class="sub-code">CS-05</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Data Structures — Stack, Queue, Linked List, Trees</span><span class="sub-code">CS-06</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Sorting &amp; Searching Algorithms</span><span class="sub-code">CS-07</span></div>
+            <div class="syl-subject-item"><span class="sub-name">OOP Concepts (C++ / Java Basics)</span><span class="sub-code">CS-08</span></div>
+          </div>
+
+          <!-- Sec C -->
+          <div style="padding:.5rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#059669">
+            <i class="fa-solid fa-database" style="margin-right:.35rem"></i>
+            Section C — Database Management Systems &nbsp;<span style="font-weight:400;color:var(--text-muted)">(30 Marks)</span>
+          </div>
+          <div class="syl-subjects">
+            <div class="syl-subject-item"><span class="sub-name">DBMS Concepts — RDBMS &amp; ER Model</span><span class="sub-code">DB-01</span></div>
+            <div class="syl-subject-item"><span class="sub-name">SQL — DDL, DML, DCL, TCL Commands</span><span class="sub-code">DB-02</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Normalization (1NF, 2NF, 3NF, BCNF)</span><span class="sub-code">DB-03</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Transactions, Concurrency Control &amp; Indexing</span><span class="sub-code">DB-04</span></div>
+            <div class="syl-subject-item"><span class="sub-name">File Organisation &amp; Storage Structures</span><span class="sub-code">DB-05</span></div>
+          </div>
+
+          <!-- Sec D -->
+          <div style="padding:.5rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0ea5e9">
+            <i class="fa-solid fa-network-wired" style="margin-right:.35rem"></i>
+            Section D — Networking &amp; Operating Systems &nbsp;<span style="font-weight:400;color:var(--text-muted)">(30 Marks)</span>
+          </div>
+          <div class="syl-subjects">
+            <div class="syl-subject-item"><span class="sub-name">OS Concepts — Process, Thread &amp; Scheduling</span><span class="sub-code">OS-01</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Memory Management &amp; Virtual Memory</span><span class="sub-code">OS-02</span></div>
+            <div class="syl-subject-item"><span class="sub-name">File Systems &amp; Deadlock Handling</span><span class="sub-code">OS-03</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Network Fundamentals — OSI &amp; TCP/IP Model</span><span class="sub-code">NET-01</span></div>
+            <div class="syl-subject-item"><span class="sub-name">IP Addressing, Subnetting &amp; Routing Basics</span><span class="sub-code">NET-02</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Application Protocols — HTTP, FTP, DNS, SMTP</span><span class="sub-code">NET-03</span></div>
+          </div>
+
+          <!-- Sec E -->
+          <div style="padding:.5rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#be123c">
+            <i class="fa-solid fa-brain" style="margin-right:.35rem"></i>
+            Section E — General Aptitude &amp; Logical Reasoning &nbsp;<span style="font-weight:400;color:var(--text-muted)">(30 Marks)</span>
+          </div>
+          <div class="syl-subjects">
+            <div class="syl-subject-item"><span class="sub-name">Quantitative Aptitude</span><span class="sub-code">APT-01</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Analytical &amp; Logical Reasoning</span><span class="sub-code">APT-02</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Data Interpretation</span><span class="sub-code">APT-03</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Verbal Ability &amp; Reading Comprehension</span><span class="sub-code">APT-04</span></div>
+            <div class="syl-subject-item"><span class="sub-name">Basic Computer Awareness (General Knowledge)</span><span class="sub-code">APT-05</span></div>
+          </div>
+
+          <div class="syl-actions" style="padding-top:.5rem">
+            <button class="btn-download" style="background:linear-gradient(135deg,#92400e,#c9a227)">
+              <i class="fa-solid fa-file-pdf"></i> Download CPGEE Syllabus PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div><!-- /syllabus-grid -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     VISITOR COUNTER
+════════════════════════════════════════════════════════ -->
+<section id="visitors">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:2.5rem">
+      <h2 class="section-title" style="color:#fff">Website Statistics</h2>
+      <p style="color:rgba(255,255,255,.7);font-size:1rem">Live visitor tracking powered by your browser</p>
+    </div>
+    <div class="visitors-grid">
+      <div class="visitor-item reveal">
+        <div class="visitor-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="visitor-number" id="count-total">0</div>
+        <div class="visitor-label">Total Visitors</div>
+      </div>
+      <div class="visitor-item reveal" style="transition-delay:.1s">
+        <div class="visitor-icon"><i class="fa-solid fa-calendar-day"></i></div>
+        <div class="visitor-number" id="count-today">0</div>
+        <div class="visitor-label">Today's Visitors</div>
+      </div>
+      <div class="visitor-item reveal" style="transition-delay:.2s">
+        <div class="visitor-icon"><i class="fa-solid fa-circle-dot" style="color:#4ade80"></i></div>
+        <div class="visitor-number" id="count-online">0</div>
+        <div class="visitor-label">Currently Online</div>
+      </div>
+      <div class="visitor-item reveal" style="transition-delay:.3s">
+        <div class="visitor-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <div class="visitor-number" id="count-pages">0</div>
+        <div class="visitor-label">Pages Viewed Today</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FAQ SECTION
+════════════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Help Center</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Quick answers to the most common queries from prospective and current students.</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item open reveal">
+        <div class="faq-q">What is CPGEE and how do I apply for MCA admission? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>CPGEE (Cotton University Post Graduate Entrance Examination) is the primary entrance test for MCA admission, conducted by Cotton University usually in May–June. It is an offline OMR-based exam with 200 MCQ questions covering Mathematics, Computer Fundamentals &amp; Programming, DBMS, Networking &amp; OS, and General Aptitude — totalling 200 marks with −0.25 negative marking. Apply through the official Cotton University admission portal. Candidates with valid NIMCET or CUET PG scores may also be considered.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.05s">
+        <div class="faq-q">What is the eligibility for BCA admission at Cotton University? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Candidates must have passed 10+2 (Class XII) from a recognized board in any stream with Mathematics as one of the subjects. A minimum aggregate of 45% marks is required for General category and 40% for SC/ST/OBC candidates. Admission is through CUET UG scores.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <div class="faq-q">Is the MCA admission through NIMCET or CPGEE or CUET? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Cotton University primarily uses CPGEE (its own entrance) for MCA admissions. Students may also apply using valid NIMCET or CUET PG scores. Seats are filled first on CPGEE merit, then other entrance scores if seats remain. Check the official university portal for each year's notification.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.15s">
+        <div class="faq-q">What is the CPGEE syllabus and exam pattern? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>CPGEE has 5 sections: (A) Mathematics — 50 marks covering calculus, algebra, probability; (B) Computer Fundamentals &amp; Programming — 60 marks covering C, data structures, algorithms; (C) DBMS — 30 marks covering SQL, normalization, transactions; (D) Networking &amp; OS — 30 marks covering TCP/IP, process management; (E) General Aptitude — 30 marks covering reasoning &amp; verbal ability. Total: 200 marks, 200 MCQs, 2 hours, offline OMR mode, −0.25 negative marking. Full syllabus PDF is available in the Syllabus section.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.2s">
+        <div class="faq-q">What is the annual fee structure for BCA, B.Sc CS, and MCA? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Being a central university, Cotton University maintains affordable fee structures: BCA &amp; B.Sc CS: approximately ₹8,000–12,000 per annum for tuition. MCA: approximately ₹14,000–18,000 per annum. Additional charges include laboratory, library, and sports fees. Scholarship-holders may receive significant waivers. Please visit the official Cotton University website for updated fee details.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.25s">
+        <div class="faq-q">Does the department offer placement assistance? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Yes! The department has an active Training &amp; Placement Cell conducting mock interviews, resume-building workshops, and coding bootcamps. Companies like TCS, Infosys, Wipro, Cognizant, and various startups recruit from campus. The placement rate for 2023–24 was approximately 85% for eligible students.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.3s">
+        <div class="faq-q">What programming languages and technologies are taught? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>The curriculum covers: C, C++, Java, Python, PHP, JavaScript for programming; MySQL, MongoDB, Oracle for databases; HTML/CSS, React basics for web; AWS &amp; Google Cloud for cloud computing; TensorFlow &amp; scikit-learn for ML; Android for mobile development. The curriculum is revised annually to stay current with industry demands.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.35s">
+        <div class="faq-q">How can I contact the CS &amp; IT Help Desk for admission queries? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Email us at helpdesk@cotton.edu.in, call +91-361-2345678 (Mon–Fri, 9AM–5PM), use the live chat widget on this page, or visit us in person at the Dept. of CS &amp; IT, Cotton University, Panbazar, Guwahati–781001. We typically respond to email queries within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h2 class="section-title">Contact the Help Desk</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item reveal">
+          <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="ci-text">
+            <div class="label">Address</div>
+            <div class="value">Dept. of CS &amp; IT, Cotton University<br/>Panbazar, Guwahati – 781 001<br/>Assam, India</div>
+          </div>
+        </div>
+        
+       
+        </div>
+        
+        <div class="reveal" style="transition-delay:.2s">
+          <p style="font-size:.85rem;font-weight:600;color:var(--text-muted);margin-bottom:.6rem">Follow Us</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa--f"></i></a>
+            <a href="#" class="social-btn" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="map-wrap reveal" style="transition-delay:.25s">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.3!2d91.7362!3d26.1863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a5912fbef85b7%3A0x5d97a0e4b6e35d24!2sCotton%20University!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" title="Cotton University Map">
+          </iframe>
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="width:50px;height:50px;font-size:1.6rem">C</div>
+        <p style="margin-top:.75rem">
+          The Department of Computer Science &amp; Information Technology, Cotton University, is committed to excellence in education, research, and innovation in the field of computing.
+        </p>
+        <div class="social-links" style="margin-top:1rem">
+          <a href="#" class="social-btn" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <a href="#courses">BCA</a>
+        <a href="#courses">B.Sc Computer Science</a>
+        <a href="#courses">MCA</a>
+        <a href="#syllabus">Syllabus</a>
+        <a href="#cutoff">Cutoff Marks</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#syllabus">CPGEE Syllabus</a>
+        <a href="#faq">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="https://www.cottonuniversity.ac.in" target="_blank" rel="noopener">University Website</a>
+        <a href="#">Admission Portal</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Cotton University · Dept. of CS &amp; IT · All rights reserved.</span>
+      <span>Designed for students, by the <a href="#contact">Help Desk Team</a></span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FLOATING WIDGETS
+════════════════════════════════════════════════════════ -->
+
+<!-- Chat Toggle -->
+<button id="chat-toggle" aria-label="Open Help Chat">
+  <i class="fa-solid fa-comments"></i>
+</button>
+
+<!-- Chat Box -->
+<div id="chat-box">
+  <div class="chat-header">
+    <div>
+      <h4><i class="fa-solid fa-robot"></i> CS &amp; IT Help Bot</h4>
+      <span>🟢 Online · Replies instantly</span>
+    </div>
+    <span class="chat-close" id="chat-close-btn">✕</span>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">👋 Hello! I'm the Cotton University CS &amp; IT Help Bot. Ask me about CPGEE, admissions, courses, cutoffs, or anything else!</div>
+    <div class="chat-msg bot">Quick links: <strong>Courses · CPGEE Syllabus · Cutoff · Contact</strong></div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Type your question…" />
+    <button class="chat-send" id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- Back to Top -->
+<button id="back-top" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- Custom JS -->
+<script src="main.js"></script>
+</body>
+</html>
