@@ -69,9 +69,7 @@ const typingEl = document.getElementById('typing-text');
 const phrases = [
   'Explore BCA, B.Sc CS & MCA Programs',
   'Find Courses, Syllabi & Cutoffs',
-  'Ask Questions & Get Instant Help',
-  'Download Prospectus & Resources',
-  'Connect with Faculty & Advisors'
+  'Ask Questions & Get Instant Help'
 ];
 let pIdx = 0, cIdx = 0, deleting = false;
 function typeLoop() {
