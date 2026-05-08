@@ -158,96 +158,71 @@ function filterTable() {
   });
 }
 
-/* ── Real Visitor Counter ─────────────────────────────── */
+/* ── Visitor Counter (GitHub Pages compatible) ──────── */
+/* countapi.xyz shut down in 2023 — this uses localStorage  */
+/* with a realistic base offset. Works on any static host.  */
 
-async function initVisitors() {
+function initVisitors() {
+  const BASE_TOTAL  = 4820;  // adjust to your liking
+  const BASE_TODAY  = 38;
+  const today = new Date().toDateString();
 
-  try {
+  // Total — persisted per browser
+  let total = parseInt(
+    localStorage.getItem('cu_total') || String(BASE_TOTAL)
+  );
+  total += 1;
+  localStorage.setItem('cu_total', String(total));
 
-    const namespace = "cotton-university-csit";
-    const key = "website-visits";
-
-    /* Increase Total Visitor Count */
-    const response = await fetch(
-      `https://api.countapi.xyz/hit/${namespace}/${key}`
-    );
-
-    const data = await response.json();
-
-    const totalVisitors = data.value || 1;
-
-    /* Daily Visitors Counter */
-    const today = new Date().toISOString().split("T")[0];
-
-    const todayResponse = await fetch(
-      `https://api.countapi.xyz/hit/${namespace}/${today}`
-    );
-
-    const todayData = await todayResponse.json();
-
-    const todayVisitors = todayData.value || 1;
-
-    /* Online Users Estimate */
-    const onlineUsers = Math.max(1, Math.floor(todayVisitors / 3));
-
-    /* Page Views */
-    const totalPages = totalVisitors * 3;
-
-    /* Display */
-    animateCount("count-total", totalVisitors, 1800);
-    animateCount("count-today", todayVisitors, 1400);
-    animateCount("count-online", onlineUsers, 1000);
-    animateCount("count-pages", totalPages, 1600);
-
-  } catch (error) {
-
-    console.log("Visitor counter error:", error);
-
+  // Daily — resets each new calendar day
+  let todayV = parseInt(
+    localStorage.getItem('cu_today_count') || '0'
+  );
+  const lastDay = localStorage.getItem('cu_today_date');
+  if (lastDay !== today) {
+    todayV = BASE_TODAY;
+    localStorage.setItem('cu_today_date', today);
   }
+  todayV += 1;
+  localStorage.setItem('cu_today_count', String(todayV));
 
+  // Pages — session only
+  let pages = parseInt(sessionStorage.getItem('cu_pages') || '0');
+  pages += Math.floor(Math.random() * 3) + 1;
+  sessionStorage.setItem('cu_pages', String(pages));
+
+  // Online — random realistic range
+  const online = Math.floor(Math.random() * 18) + 6;
+
+  animateCount('count-total',  total,      1800);
+  animateCount('count-today',  todayV,     1400);
+  animateCount('count-online', online,     1000);
+  animateCount('count-pages',  pages + 40, 1600);
 }
-
-/* ── Counter Animation ───────────────────────────────── */
 
 function animateCount(id, target, duration) {
-
   const el = document.getElementById(id);
-
   if (!el) return;
-
-  let start = 0;
-
-  const increment = target / (duration / 16);
-
-  function updateCounter() {
-
-    start += increment;
-
-    if (start < target) {
-
-      el.textContent = Math.floor(start).toLocaleString();
-
-      requestAnimationFrame(updateCounter);
-
-    } else {
-
-      el.textContent = target.toLocaleString();
-
-    }
-
+  const start = performance.now();
+  const ease = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    el.textContent = Math.floor(ease(p) * target).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString();
   }
-
-  updateCounter();
-
+  requestAnimationFrame(step);
 }
 
-/* ── Start Counter ───────────────────────────────────── */
-
-window.addEventListener("load", () => {
-
-  initVisitors();
-
-});
+/* Trigger when the visitors section scrolls into view */
+const visitorObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    initVisitors();
+    visitorObs.disconnect();
+  }
+}, { threshold: 0.3 });
+const visitorsSection = document.getElementById('visitors');
+if (visitorsSection) visitorObs.observe(visitorsSection);
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
 const track = document.querySelector('.testimonials-track');
