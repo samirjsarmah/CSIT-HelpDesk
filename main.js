@@ -1,5 +1,6 @@
 /* ============================================================
    Cotton University – CS & IT Help Desk  |  main.js
+   Enhanced: Glass Liquid + iOS Parallax Edition
    ============================================================ */
 
 /* ── Loading Screen ─────────────────────────────────────── */
@@ -32,7 +33,98 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
   document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+  // Parallax on scroll
+  parallaxOnScroll();
 });
+
+/* ── iOS-style Parallax ─────────────────────────────────── */
+function parallaxOnScroll() {
+  const scrollY = window.scrollY;
+  const heroBg = document.querySelector('.hero-bg');
+  const heroDots = document.querySelector('.hero-dots');
+  const heroPattern = document.querySelector('.hero-pattern');
+
+  if (heroBg) {
+    heroBg.style.transform = `translateY(${scrollY * 0.35}px) translateZ(0)`;
+  }
+  if (heroDots) {
+    heroDots.style.transform = `translateY(${scrollY * 0.18}px)`;
+  }
+  if (heroPattern) {
+    heroPattern.style.transform = `translateY(${scrollY * 0.22}px)`;
+  }
+}
+
+/* ── Gyroscope / Device-Tilt Parallax (mobile) ──────────── */
+if (window.DeviceOrientationEvent) {
+  const heroStatCards = document.querySelectorAll('.hero-stat-card');
+  window.addEventListener('deviceorientation', (e) => {
+    const tiltX = (e.gamma || 0) / 45; // -1 to 1
+    const tiltY = (e.beta  || 0) / 90; // -1 to 1
+    heroStatCards.forEach((card, i) => {
+      const depth = (i + 1) * 3;
+      card.style.transform = `translate(${tiltX * depth}px, ${tiltY * depth}px)`;
+    });
+  });
+}
+
+/* ── Liquid Cursor Glow (desktop) ───────────────────────── */
+(function initCursorGlow() {
+  if (window.innerWidth < 768) return;
+  const glow = document.createElement('div');
+  glow.id = 'cursor-glow';
+  glow.style.cssText = `
+    position: fixed; pointer-events: none; z-index: 9998;
+    width: 350px; height: 350px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,176,0.08) 0%, transparent 65%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    top: 0; left: 0;
+    will-change: transform;
+  `;
+  document.body.appendChild(glow);
+
+  let mouseX = 0, mouseY = 0;
+  let glowX = 0, glowY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+  });
+
+  function animateGlow() {
+    glowX += (mouseX - glowX) * 0.07;
+    glowY += (mouseY - glowY) * 0.07;
+    glow.style.left = glowX + 'px';
+    glow.style.top  = glowY + 'px';
+    requestAnimationFrame(animateGlow);
+  }
+  animateGlow();
+})();
+
+/* ── Liquid Glass Hover Tilt ────────────────────────────── */
+(function initCardTilt() {
+  if (window.innerWidth < 768) return;
+  const tiltCards = document.querySelectorAll('.quick-card, .hero-stat-card, .syl-card, .faq-item');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.transform = `
+        translateY(-6px)
+        rotateX(${-y * 5}deg)
+        rotateY(${x * 5}deg)
+        scale(1.01)
+      `;
+      // Specular highlight
+      card.style.setProperty('--mx', `${(x + 0.5) * 100}%`);
+      card.style.setProperty('--my', `${(y + 0.5) * 100}%`);
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
 
 /* ── Mobile Nav ─────────────────────────────────────────── */
 const hamburger = document.getElementById('hamburger');
@@ -49,12 +141,12 @@ const searchOverlay = document.getElementById('search-overlay');
 document.getElementById('search-toggle')?.addEventListener('click', () => searchOverlay.classList.add('active'));
 document.getElementById('search-close')?.addEventListener('click', () => searchOverlay.classList.remove('active'));
 searchOverlay?.addEventListener('click', e => { if (e.target === searchOverlay) searchOverlay.classList.remove('active'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') searchOverlay.classList.remove('active'); });
 
-/* Search functionality */
 document.getElementById('search-input')?.addEventListener('input', function () {
   const q = this.value.toLowerCase();
   if (!q) return;
-  const sections = ['courses', 'cutoff', 'syllabus', 'faq', 'contact', 'notices', 'faculty'];
+  const sections = ['courses', 'cutoff', 'syllabus', 'faq', 'contact'];
   for (const id of sections) {
     if (id.includes(q) || document.getElementById(id)?.textContent.toLowerCase().includes(q)) {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -97,10 +189,19 @@ const observer = new IntersectionObserver(entries => {
 }, { rootMargin: '-40% 0px -55% 0px' });
 sections.forEach(s => observer.observe(s));
 
-/* ── Scroll Reveal ──────────────────────────────────────── */
+/* ── Scroll Reveal (staggered spring) ──────────────────── */
 const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      // Stagger siblings
+      const siblings = e.target.parentElement.querySelectorAll('.reveal');
+      siblings.forEach((el, idx) => {
+        setTimeout(() => el.classList.add('visible'), idx * 80);
+      });
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.10 });
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
 /* ── Course Tabs ────────────────────────────────────────── */
@@ -163,9 +264,7 @@ const COUNTER_NS = 'cotton-csit-helpdesk';
 
 async function initVisitors() {
   try {
-    const res  = await fetch(
-      `https://api.counterapi.dev/v1/${COUNTER_NS}/total-visitors/up`
-    );
+    const res  = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NS}/total-visitors/up`);
     const data = await res.json();
     const total = data.count || 1;
     animateCount('count-total', total, 1800);
@@ -180,10 +279,10 @@ function animateCount(id, target, duration) {
   const el = document.getElementById(id);
   if (!el) return;
   const start = performance.now();
-  const ease  = t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  const ease  = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
   function step(now) {
-    const p = Math.min((now - start) / duration, 1);
-    el.textContent = Math.floor(ease(p) * target).toLocaleString();
+    const p = Math.min((now-start)/duration, 1);
+    el.textContent = Math.floor(ease(p)*target).toLocaleString();
     if (p < 1) requestAnimationFrame(step);
     else el.textContent = target.toLocaleString();
   }
@@ -191,12 +290,8 @@ function animateCount(id, target, duration) {
 }
 
 const visitorObs = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) {
-    initVisitors();
-    visitorObs.disconnect();
-  }
+  if (entries[0].isIntersecting) { initVisitors(); visitorObs.disconnect(); }
 }, { threshold: 0.3 });
-
 const visitorsSection = document.getElementById('visitors');
 if (visitorsSection) visitorObs.observe(visitorsSection);
 
@@ -216,25 +311,11 @@ function updateCarousel() {
   if (track) track.style.transform = `translateX(-${pct}%)`;
   dots.forEach((d, i) => d.classList.toggle('active', i === testIdx));
 }
-
-document.getElementById('test-prev')?.addEventListener('click', () => {
-  testIdx = testIdx > 0 ? testIdx - 1 : 0;
-  updateCarousel();
-});
-document.getElementById('test-next')?.addEventListener('click', () => {
-  const max = totalSlides - perView;
-  testIdx = testIdx < max ? testIdx + 1 : max;
-  updateCarousel();
-});
+document.getElementById('test-prev')?.addEventListener('click', () => { testIdx = testIdx > 0 ? testIdx-1 : 0; updateCarousel(); });
+document.getElementById('test-next')?.addEventListener('click', () => { const max = totalSlides-perView; testIdx = testIdx < max ? testIdx+1 : max; updateCarousel(); });
 dots.forEach((d, i) => d.addEventListener('click', () => { testIdx = i; updateCarousel(); }));
 window.addEventListener('resize', updateCarousel);
-
-/* Auto-slide every 5s */
-setInterval(() => {
-  const max = totalSlides - perView;
-  testIdx = testIdx < max ? testIdx + 1 : 0;
-  updateCarousel();
-}, 5000);
+setInterval(() => { const max = totalSlides-perView; testIdx = testIdx < max ? testIdx+1 : 0; updateCarousel(); }, 5000);
 
 /* ── Chat Widget ─────────────────────────────────────────── */
 const chatBox = document.getElementById('chat-box');
@@ -280,17 +361,13 @@ document.getElementById('contact-form')?.addEventListener('submit', function (e)
   const btn = this.querySelector('.btn-submit');
   btn.textContent = '✓ Message Sent!';
   btn.style.background = 'linear-gradient(135deg,#10b981,#34d399)';
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-    this.reset();
-  }, 3000);
+  setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; this.reset(); }, 3000);
 });
 
 /* ── Back to Top ─────────────────────────────────────────── */
 document.getElementById('back-top')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ── PDF Download Simulation ─────────────────────────────── */
+/* ── PDF Download ─────────────────────────────────────────── */
 document.querySelectorAll('.btn-download').forEach(btn => {
   btn.addEventListener('click', () => {
     const orig = btn.innerHTML;
@@ -307,5 +384,22 @@ document.getElementById('prospectus-btn')?.addEventListener('click', () => {
   alert('📄 Prospectus download will begin shortly.\nFor the latest prospectus, contact: ');
 });
 
+/* ── Smooth section transitions (iOS feel) ──────────────── */
+(function addSectionTransitions() {
+  const allSections = document.querySelectorAll('section');
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.filter = 'blur(0px)';
+      }
+    });
+  }, { threshold: 0.05 });
+  allSections.forEach(s => {
+    sectionObs.observe(s);
+  });
+})();
+
 /* ── Init ────────────────────────────────────────────────── */
 updateCarousel();
+parallaxOnScroll();
