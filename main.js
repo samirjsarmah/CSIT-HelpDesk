@@ -1,6 +1,7 @@
 /* ============================================================
    Cotton University – CS & IT Help Desk  |  main.js
    Enhanced: Glass Liquid + iOS Parallax Edition
+   New: MCA Cutoff Download, Notices, Documents Required, PYQs
    ============================================================ */
 
 /* ── Loading Screen ─────────────────────────────────────── */
@@ -33,7 +34,6 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
   document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
-  // Parallax on scroll
   parallaxOnScroll();
 });
 
@@ -43,24 +43,17 @@ function parallaxOnScroll() {
   const heroBg = document.querySelector('.hero-bg');
   const heroDots = document.querySelector('.hero-dots');
   const heroPattern = document.querySelector('.hero-pattern');
-
-  if (heroBg) {
-    heroBg.style.transform = `translateY(${scrollY * 0.35}px) translateZ(0)`;
-  }
-  if (heroDots) {
-    heroDots.style.transform = `translateY(${scrollY * 0.18}px)`;
-  }
-  if (heroPattern) {
-    heroPattern.style.transform = `translateY(${scrollY * 0.22}px)`;
-  }
+  if (heroBg) heroBg.style.transform = `translateY(${scrollY * 0.35}px) translateZ(0)`;
+  if (heroDots) heroDots.style.transform = `translateY(${scrollY * 0.18}px)`;
+  if (heroPattern) heroPattern.style.transform = `translateY(${scrollY * 0.22}px)`;
 }
 
 /* ── Gyroscope / Device-Tilt Parallax (mobile) ──────────── */
 if (window.DeviceOrientationEvent) {
   const heroStatCards = document.querySelectorAll('.hero-stat-card');
   window.addEventListener('deviceorientation', (e) => {
-    const tiltX = (e.gamma || 0) / 45; // -1 to 1
-    const tiltY = (e.beta  || 0) / 90; // -1 to 1
+    const tiltX = (e.gamma || 0) / 45;
+    const tiltY = (e.beta  || 0) / 90;
     heroStatCards.forEach((card, i) => {
       const depth = (i + 1) * 3;
       card.style.transform = `translate(${tiltX * depth}px, ${tiltY * depth}px)`;
@@ -83,14 +76,8 @@ if (window.DeviceOrientationEvent) {
     will-change: transform;
   `;
   document.body.appendChild(glow);
-
-  let mouseX = 0, mouseY = 0;
-  let glowX = 0, glowY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX; mouseY = e.clientY;
-  });
-
+  let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+  document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
   function animateGlow() {
     glowX += (mouseX - glowX) * 0.07;
     glowY += (mouseY - glowY) * 0.07;
@@ -110,19 +97,11 @@ if (window.DeviceOrientationEvent) {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width  - 0.5;
       const y = (e.clientY - rect.top)  / rect.height - 0.5;
-      card.style.transform = `
-        translateY(-6px)
-        rotateX(${-y * 5}deg)
-        rotateY(${x * 5}deg)
-        scale(1.01)
-      `;
-      // Specular highlight
+      card.style.transform = `translateY(-6px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) scale(1.01)`;
       card.style.setProperty('--mx', `${(x + 0.5) * 100}%`);
       card.style.setProperty('--my', `${(y + 0.5) * 100}%`);
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 })();
 
@@ -146,7 +125,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') searchOverla
 document.getElementById('search-input')?.addEventListener('input', function () {
   const q = this.value.toLowerCase();
   if (!q) return;
-  const sections = ['courses', 'cutoff', 'syllabus', 'faq', 'contact'];
+  const sections = ['courses', 'cutoff', 'syllabus', 'notices', 'documents', 'pyq', 'faq', 'contact'];
   for (const id of sections) {
     if (id.includes(q) || document.getElementById(id)?.textContent.toLowerCase().includes(q)) {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -161,6 +140,7 @@ const typingEl = document.getElementById('typing-text');
 const phrases = [
   'Explore BCA, B.Sc CS & MCA Programs',
   'Find Courses, Syllabi & Cutoffs',
+  'Download Previous Year Papers',
   'Ask Questions & Get Instant Help'
 ];
 let pIdx = 0, cIdx = 0, deleting = false;
@@ -189,11 +169,10 @@ const observer = new IntersectionObserver(entries => {
 }, { rootMargin: '-40% 0px -55% 0px' });
 sections.forEach(s => observer.observe(s));
 
-/* ── Scroll Reveal (staggered spring) ──────────────────── */
+/* ── Scroll Reveal ──────────────────────────────────────── */
 const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
+  entries.forEach((e) => {
     if (e.isIntersecting) {
-      // Stagger siblings
       const siblings = e.target.parentElement.querySelectorAll('.reveal');
       siblings.forEach((el, idx) => {
         setTimeout(() => el.classList.add('visible'), idx * 80);
@@ -237,7 +216,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-/* ── Cutoff Table Filter ─────────────────────────────────── */
+/* ── Cutoff Table Filter ────────────────────────────────── */
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -258,6 +237,262 @@ function filterTable() {
     row.style.display = catMatch && qMatch ? '' : 'none';
   });
 }
+
+/* ── MCA Cutoff Download ─────────────────────────────────── */
+document.getElementById('mca-cutoff-download')?.addEventListener('click', function () {
+  const btn = this;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing PDF...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    // Generate a simple CSV/text data as a downloadable file (real scenario: link to hosted PDF)
+    const cutoffData = `MCA Cutoff Marks - Cotton University (2025)
+===========================================
+Category          Score (out of 200)   Percentage
+--------------------------------------------------
+Unreserved        148 / 200            74%
+OBC               130 / 200            65%
+SC                110 / 200            55%
+ST                96 / 200             48%
+ST (Plains)       104 / 200            52%
+ST (Hills)        104 / 200            52%
+EWS               104 / 200            52%
+
+Source: Cotton University Admission Portal
+Exam: CPGEE (Cotton University Post Graduate Entrance Examination)
+Mode: Offline OMR | Total Marks: 200 | Duration: 2 Hours
+Negative Marking: -0.25 per wrong answer
+
+Note: Data is indicative. Official cutoffs published on the Cotton University portal.
+    `;
+    const blob = new Blob([cutoffData], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'MCA_Cutoff_CottonUniversity_2025.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.disabled = false;
+    }, 2500);
+  }, 1200);
+});
+
+/* ── Notices Section ─────────────────────────────────────── */
+const noticesData = [
+  {
+    id: 1,
+    tag: 'Admission',
+    tagColor: 'blue',
+    date: '12 May 2026',
+    title: 'MCA Admission 2026: Notice regarding PG Admission 2026',
+    
+    link: 'https://cottonuniversity.ac.in/index_post_details?p=2700'
+  },
+
+
+  // {
+  //   id: 2,
+  //   tag: 'Admission',
+  //   tagColor: 'blue',
+  //   date: '05 May 2025',
+  //   title: 'BCA & B.Sc CS Admission 2025-26: Merit List Schedule',
+  //   body: 'The first merit list for BCA and B.Sc Computer Science will be published on 15 June 2025. Students are advised to keep checking the official portal.',
+  //   important: true,
+  //   link: 'https://www.cottonuniversity.ac.in'
+  // },
+
+
+  // {
+  //   id: 3,
+  //   tag: 'Exam',
+  //   tagColor: 'gold',
+  //   date: '28 Apr 2025',
+  //   title: 'End Semester Examination Schedule — Even Semester 2024-25',
+  //   body: 'The timetable for Even Semester End Semester Examinations has been released. Students must download their admit cards from the student portal before the exam.',
+  //   important: false,
+  //   link: '#'
+  // },
+
+
+  // {
+  //   id: 4,
+  //   tag: 'Event',
+  //   tagColor: 'teal',
+  //   date: '20 Apr 2025',
+  //   title: 'TechFest 2025 — Registration Open',
+  //   body: 'The Annual Technical Festival of CSIT Department is scheduled for 10–12 June 2025. Registrations for coding contests, hackathons, and workshops are now open.',
+  //   important: false,
+  //   link: '#'
+  // },
+
+
+  // {
+  //   id: 5,
+  //   tag: 'Scholarship',
+  //   tagColor: 'green',
+  //   date: '12 Apr 2025',
+  //   title: 'Post-Matric Scholarship 2024-25: Last Date Extended',
+  //   body: 'The last date for submission of Post-Matric Scholarship applications has been extended to 30 April 2025. SC/ST/OBC students are urged to apply immediately.',
+  //   important: false,
+  //   link: '#'
+  // },
+
+
+  // {
+  //   id: 6,
+  //   tag: 'Placement',
+  //   tagColor: 'purple',
+  //   date: '05 Apr 2025',
+  //   title: 'Campus Recruitment Drive — Wipro Technologies',
+  //   body: 'Wipro Technologies will conduct a campus recruitment drive on 20 May 2025 for final year MCA students. Eligible students must register through the Training & Placement Cell.',
+  //   important: false,
+  //   link: '#'
+  // }
+];
+
+function renderNotices(filter = 'all') {
+  const container = document.getElementById('notices-container');
+  if (!container) return;
+  const filtered = filter === 'all' ? noticesData : noticesData.filter(n => n.tag.toLowerCase() === filter.toLowerCase());
+  if (filtered.length === 0) {
+    container.innerHTML = `<div class="notice-empty"><i class="fa-solid fa-bell-slash"></i><p>No notices in this category.</p></div>`;
+    return;
+  }
+  container.innerHTML = filtered.map(n => `
+    <div class="notice-card reveal ${n.important ? 'notice-important' : ''}">
+      ${n.important ? '<div class="notice-important-ribbon"><i class="fa-solid fa-star"></i> Important</div>' : ''}
+      <div class="notice-top">
+        <span class="notice-tag tag-${n.tagColor}">${n.tag}</span>
+        <span class="notice-date"><i class="fa-regular fa-calendar"></i> ${n.date}</span>
+      </div>
+      <h3 class="notice-title">${n.title}</h3>
+      <p class="notice-body">${n.body}</p>
+      <a href="${n.link}" target="_blank" class="notice-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  `).join('');
+
+  // Re-observe newly added .reveal elements
+  container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
+// Notice filter tabs
+document.querySelectorAll('.notice-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.notice-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderNotices(btn.dataset.filter);
+  });
+});
+
+// Init notices
+renderNotices('all');
+
+/* ── Documents Accordion ─────────────────────────────────── */
+document.querySelectorAll('.doc-program-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.closest('.doc-program-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.doc-program-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ── PYQ Filter & Cards ──────────────────────────────────── */
+const pyqData = [
+  { program: 'mca', subject: 'cpgee', title: 'CPGEE PYQ Question Paper' },
+  
+];
+
+function renderPYQ(programFilter = 'all', subjectFilter = 'all', yearFilter = 'all') {
+  const container = document.getElementById('pyq-container');
+  if (!container) return;
+  let filtered = pyqData;
+  if (programFilter !== 'all') filtered = filtered.filter(p => p.program === programFilter);
+  if (subjectFilter !== 'all') filtered = filtered.filter(p => p.subject === subjectFilter);
+  if (yearFilter !== 'all') filtered = filtered.filter(p => p.year === parseInt(yearFilter));
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div class="pyq-empty"><i class="fa-solid fa-file-circle-xmark"></i><p>No papers found for selected filters.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map((p, i) => `
+    <div class="pyq-card reveal" style="transition-delay:${i * 0.05}s">
+      <div class="pyq-card-top">
+        <div class="pyq-badge-row">
+          <span class="pyq-program-badge prog-${p.program}">${p.program.toUpperCase()}</span>
+          <span class="pyq-year-badge">${p.year}</span>
+        </div>
+        <div class="pyq-icon"><i class="fa-solid fa-file-pdf"></i></div>
+      </div>
+      <h4 class="pyq-title">${p.title}</h4>
+      <p class="pyq-desc">${p.desc}</p>
+      <div class="pyq-meta">
+        <span><i class="fa-regular fa-file-lines"></i> ${p.pages} Pages</span>
+        <span><i class="fa-solid fa-weight-hanging"></i> ${p.size}</span>
+      </div>
+      <button class="pyq-download-btn" data-title="${p.title}" data-year="${p.year}" data-program="${p.program}">
+        <i class="fa-solid fa-download"></i> Download Paper
+      </button>
+    </div>
+  `).join('');
+
+  // Attach download handlers
+  container.querySelectorAll('.pyq-download-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const orig = this.innerHTML;
+      this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
+      this.disabled = true;
+      const { title, year, program } = this.dataset;
+      setTimeout(() => {
+        const content = `Cotton University — Department of CS & IT\n${title}\nYear: ${year} | Program: ${program.toUpperCase()}\n\n[This is a placeholder download. Please contact the department or check the official CSIT portal for actual question papers.]\n\nContact: csit.cottonuniversity.ac.in\nAddress: Dept. of CS & IT, Cotton University, Panbazar, Guwahati – 781001`;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${title.replace(/[^a-z0-9]/gi, '_')}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        this.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+        setTimeout(() => { this.innerHTML = orig; this.disabled = false; }, 2500);
+      }, 1000);
+    });
+  });
+
+  container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
+// PYQ filters
+let pyqProgram = 'all', pyqSubject = 'all', pyqYear = 'all';
+
+document.querySelectorAll('.pyq-program-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pyq-program-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    pyqProgram = btn.dataset.prog;
+    renderPYQ(pyqProgram, pyqSubject, pyqYear);
+  });
+});
+document.querySelectorAll('.pyq-subject-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pyq-subject-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    pyqSubject = btn.dataset.subject;
+    renderPYQ(pyqProgram, pyqSubject, pyqYear);
+  });
+});
+document.getElementById('pyq-year-select')?.addEventListener('change', function () {
+  pyqYear = this.value;
+  renderPYQ(pyqProgram, pyqSubject, pyqYear);
+});
+
+// Init PYQ
+renderPYQ();
 
 /* ── Visitor Counter ─────────────────────────────────────── */
 const COUNTER_NS = 'cotton-csit-helpdesk';
@@ -324,12 +559,12 @@ document.getElementById('chat-close-btn')?.addEventListener('click', () => chatB
 
 const botReplies = [
   "Hello! 👋 I'm the CS & IT Help Desk bot. How can I assist you today?",
-  "For admission queries, please visit the Courses section",
-  "Cutoff marks are listed under the Cutoff section. You can filter by category.",
+  "For admission queries, please visit the Courses section or check the Notices section for latest updates.",
+  "Cutoff marks are listed under the Cutoff section. You can filter by category and download the MCA cutoff PDF.",
   "The syllabus for all programs is available in the Syllabus section with PDF downloads.",
-  "For urgent matters, call us at +91-361-2345678 during office hours (9AM–5PM).",
-  "You can submit a detailed query using the Contact form. We respond within 24 hours.",
-  "The academic calendar and notices are updated regularly in the Notices section."
+  "Documents required for admission are listed in the 'Documents Required' section of this website.",
+  "Previous year question papers are available in the 'Previous Year Papers' section — filter by program and subject.",
+  "For urgent matters, contact the department or visit the official portal: csit.cottonuniversity.ac.in.",
 ];
 let replyIdx = 1;
 
@@ -367,24 +602,22 @@ document.getElementById('contact-form')?.addEventListener('submit', function (e)
 /* ── Back to Top ─────────────────────────────────────────── */
 document.getElementById('back-top')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ── PDF Download ─────────────────────────────────────────── */
+/* ── PDF Download (syllabus cards) ───────────────────────── */
 document.querySelectorAll('.btn-download').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const orig = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
+  btn.addEventListener('click', function(e) {
+    // Only intercept buttons that are NOT links
+    if (this.tagName === 'A') return;
+    e.preventDefault();
+    const orig = this.innerHTML;
+    this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
     setTimeout(() => {
-      btn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
-      setTimeout(() => btn.innerHTML = orig, 2000);
+      this.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+      setTimeout(() => this.innerHTML = orig, 2000);
     }, 1500);
   });
 });
 
-/* ── Prospectus Button ───────────────────────────────────── */
-document.getElementById('prospectus-btn')?.addEventListener('click', () => {
-  alert('📄 Prospectus download will begin shortly.\nFor the latest prospectus, contact: ');
-});
-
-/* ── Smooth section transitions (iOS feel) ──────────────── */
+/* ── Smooth Section Transitions ────────────────────────────── */
 (function addSectionTransitions() {
   const allSections = document.querySelectorAll('section');
   const sectionObs = new IntersectionObserver(entries => {
@@ -395,9 +628,7 @@ document.getElementById('prospectus-btn')?.addEventListener('click', () => {
       }
     });
   }, { threshold: 0.05 });
-  allSections.forEach(s => {
-    sectionObs.observe(s);
-  });
+  allSections.forEach(s => sectionObs.observe(s));
 })();
 
 /* ── Init ────────────────────────────────────────────────── */
