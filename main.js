@@ -402,96 +402,135 @@ document.querySelectorAll('.doc-program-header').forEach(header => {
   });
 });
 
-/* ── PYQ Filter & Cards ──────────────────────────────────── */
+//* ── PYQ Filter & Cards ──────────────────────────────────── */
 const pyqData = [
-  { program: 'mca', subject: 'cpgee', title: 'CPGEE PYQ Question Paper' },
-  
+
+  {
+    program: 'mca',
+    subject: 'cpgee',
+    title: 'CPGEE PYQ Question Paper',
+    desc: 'Official previous year entrance examination paper.',
+    link: 'https://drive.google.com/drive/folders/1I-Ba5ONj48Fo2EqhF-TPHuU3R7gcoCdV'
+  },
+
+  {
+    program: 'bca',
+    subject: 'semester',
+    title: 'BCA Previous Year Question Papers',
+    desc: 'Semester-wise previous year question papers for BCA.',
+    link: 'https://drive.google.com/drive/folders/1I-Ba5ONj48Fo2EqhF-TPHuU3R7gcoCdV'
+  },
+
+  {
+    program: 'bsc',
+    subject: 'semester',
+    title: 'B.Sc CS Previous Year Question Papers',
+    desc: 'Semester-wise previous year question papers for B.Sc CS.',
+    link: 'https://drive.google.com/drive/folders/1I-Ba5ONj48Fo2EqhF-TPHuU3R7gcoCdV'
+  },
+
 ];
 
-function renderPYQ(programFilter = 'all', subjectFilter = 'all', yearFilter = 'all') {
-  const container = document.getElementById('pyq-container');
-  if (!container) return;
-  let filtered = pyqData;
-  if (programFilter !== 'all') filtered = filtered.filter(p => p.program === programFilter);
-  if (subjectFilter !== 'all') filtered = filtered.filter(p => p.subject === subjectFilter);
-  if (yearFilter !== 'all') filtered = filtered.filter(p => p.year === parseInt(yearFilter));
+function renderPYQ(programFilter = 'all', subjectFilter = 'all') {
 
+  const container = document.getElementById('pyq-container');
+
+  if (!container) return;
+
+  let filtered = pyqData;
+
+  /* ── Program Filter ───────────────────────────────── */
+  if (programFilter !== 'all') {
+    filtered = filtered.filter(p => p.program === programFilter);
+  }
+
+  /* ── Subject Filter ───────────────────────────────── */
+  if (subjectFilter !== 'all') {
+    filtered = filtered.filter(p => p.subject === subjectFilter);
+  }
+
+  /* ── Empty State ──────────────────────────────────── */
   if (filtered.length === 0) {
-    container.innerHTML = `<div class="pyq-empty"><i class="fa-solid fa-file-circle-xmark"></i><p>No papers found for selected filters.</p></div>`;
+
+    container.innerHTML = `
+      <div class="pyq-empty">
+        <i class="fa-solid fa-file-circle-xmark"></i>
+        <p>No papers found for selected filters.</p>
+      </div>
+    `;
+
     return;
   }
 
+  /* ── Render Cards ─────────────────────────────────── */
   container.innerHTML = filtered.map((p, i) => `
-    <div class="pyq-card reveal" style="transition-delay:${i * 0.05}s">
+
+    <div class="pyq-card reveal"
+         style="transition-delay:${i * 0.05}s">
+
       <div class="pyq-card-top">
-        <div class="pyq-badge-row">
-          <span class="pyq-program-badge prog-${p.program}">${p.program.toUpperCase()}</span>
-          <span class="pyq-year-badge">${p.year}</span>
-        </div>
-        <div class="pyq-icon"><i class="fa-solid fa-file-pdf"></i></div>
+
+        <span class="pyq-program-badge prog-${p.program}">
+          ${p.program.toUpperCase()}
+        </span>
+
       </div>
-      <h4 class="pyq-title">${p.title}</h4>
-      <p class="pyq-desc">${p.desc}</p>
-      <div class="pyq-meta">
-        <span><i class="fa-regular fa-file-lines"></i> ${p.pages} Pages</span>
-        <span><i class="fa-solid fa-weight-hanging"></i> ${p.size}</span>
+
+      <h4 class="pyq-title">
+        ${p.title}
+      </h4>
+
+      <p class="pyq-desc">
+        ${p.desc}
+      </p>
+
+      <div class="pyq-actions">
+
+        <a href="${p.link}"
+           target="_blank"
+           class="pyq-btn primary">
+
+          <i class="fa-solid fa-download"></i>
+          Download Paper
+
+        </a>
+
       </div>
-      <button class="pyq-download-btn" data-title="${p.title}" data-year="${p.year}" data-program="${p.program}">
-        <i class="fa-solid fa-download"></i> Download Paper
-      </button>
+
     </div>
+
   `).join('');
 
-  // Attach download handlers
-  container.querySelectorAll('.pyq-download-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const orig = this.innerHTML;
-      this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
-      this.disabled = true;
-      const { title, year, program } = this.dataset;
-      setTimeout(() => {
-        const content = `Cotton University — Department of CS & IT\n${title}\nYear: ${year} | Program: ${program.toUpperCase()}\n\n[This is a placeholder download. Please contact the department or check the official CSIT portal for actual question papers.]\n\nContact: csit.cottonuniversity.ac.in\nAddress: Dept. of CS & IT, Cotton University, Panbazar, Guwahati – 781001`;
-        const blob = new Blob([content], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${title.replace(/[^a-z0-9]/gi, '_')}.txt`;
-        a.click();
-        URL.revokeObjectURL(url);
-        this.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
-        setTimeout(() => { this.innerHTML = orig; this.disabled = false; }, 2500);
-      }, 1000);
-    });
+  /* ── Reveal Animation ─────────────────────────────── */
+  container.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
   });
 
-  container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 }
 
-// PYQ filters
-let pyqProgram = 'all', pyqSubject = 'all', pyqYear = 'all';
+/* ── PYQ Filters ────────────────────────────────────────── */
+let pyqProgram = 'all',
+    pyqSubject = 'all';
 
+/* ── Program Buttons ───────────────────────────────────── */
 document.querySelectorAll('.pyq-program-btn').forEach(btn => {
+
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.pyq-program-btn').forEach(b => b.classList.remove('active'));
+
+    document.querySelectorAll('.pyq-program-btn')
+      .forEach(b => b.classList.remove('active'));
+
     btn.classList.add('active');
+
     pyqProgram = btn.dataset.prog;
-    renderPYQ(pyqProgram, pyqSubject, pyqYear);
+
+    renderPYQ(pyqProgram, pyqSubject);
+
   });
-});
-document.querySelectorAll('.pyq-subject-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.pyq-subject-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    pyqSubject = btn.dataset.subject;
-    renderPYQ(pyqProgram, pyqSubject, pyqYear);
-  });
-});
-document.getElementById('pyq-year-select')?.addEventListener('change', function () {
-  pyqYear = this.value;
-  renderPYQ(pyqProgram, pyqSubject, pyqYear);
+
 });
 
-// Init PYQ
+/* ── Init ──────────────────────────────────────────────── */
 renderPYQ();
 
 /* ── Visitor Counter ─────────────────────────────────────── */
