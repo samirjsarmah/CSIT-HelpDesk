@@ -1625,3 +1625,56 @@ footer::after { content: ''; position: absolute; top: 0; left: 0; right: 0; heig
   color: #000000;
   border: 1px solid rgba(255, 193, 7, 0.35);
 }
+
+
+
+/* ── Official Notice Button ───────────────────────── */
+
+.official-notice-btn-wrapper{
+  margin-top: 1.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.official-notice-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+
+  padding: .95rem 1.4rem;
+
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: #fff;
+
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .3px;
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 10px 30px rgba(37,99,235,.25);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.official-notice-btn:hover{
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 14px 35px rgba(37,99,235,.35);
+
+  background: linear-gradient(135deg,#1d4ed8,#1e40af);
+}
+
+.official-notice-btn i{
+  font-size: .95rem;
+}
+
+.official-notice-btn span{
+  white-space: nowrap;
+}
