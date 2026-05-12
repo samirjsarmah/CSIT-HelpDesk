@@ -383,68 +383,240 @@
 ════════════════════════════════════════════════════════ -->
 <section id="cutoff">
   <div class="container">
+
     <div class="section-header">
       <span class="section-eyebrow">Admission Data</span>
       <h2 class="section-title">Previous Year Cutoff Marks</h2>
       <div class="divider"></div>
-      <p class="section-desc">Category-wise cutoff based on CUET / CPGEE scores and merit. Data shown for 2025 academic year.</p>
+      <p class="section-desc">
+        Category-wise cutoff based on CUET / CPGEE scores and merit.
+        Data shown for 2025 academic year.
+      </p>
     </div>
 
+    <!-- FILTERS -->
     <div class="cutoff-controls reveal">
+
       <div class="filter-group">
         <button class="filter-btn active" data-cat="all">All Categories</button>
         <button class="filter-btn" data-cat="gen">General</button>
-         <button class="filter-btn" data-cat="gen">EWS</button>
+        <button class="filter-btn" data-cat="ews">EWS</button>
         <button class="filter-btn" data-cat="obc">OBC</button>
         <button class="filter-btn" data-cat="sc">SC</button>
         <button class="filter-btn" data-cat="st">ST</button>
       </div>
-      <input type="text" class="search-input" id="cutoff-search" placeholder="🔍  Search" />
+
+      <input
+        type="text"
+        class="search-input"
+        id="cutoff-search"
+        placeholder="🔍 Search Program"
+      />
+
     </div>
 
+    <!-- TABLE -->
     <div class="table-wrap reveal">
+
       <table class="cutoff-table">
+
         <thead>
           <tr>
             <th>Program</th>
             <th>Category</th>
             <th>Year</th>
-            <th>Cutoff%</th>
+            <th>Cutoff</th>
             <th>Exam</th>
             <th>Remarks</th>
           </tr>
         </thead>
-        <tbody>
-          <!--BCA-->
-          <tr data-cat="gen"><td><strong>BCA</strong></td><td><span class="cat-badge gen">Unreserved</span></td><td>2025</td><td>87.67%</td><td>12th</td><td>High Competition</td></tr>
-          <tr data-cat="obc"><td><strong>BCA</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2025</td><td>84.33%</td><td>12th</td><td>Moderate</td></tr>
-          <tr data-cat="sc"><td><strong>BCA</strong></td><td><span class="cat-badge sc">SC</span></td><td>2025</td><td>85.33%</td><td>12th</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>BCA</strong></td><td><span class="cat-badge st">ST(PLAINS)</span></td><td>2025</td><td>76.67%</td><td>12th</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>BCA</strong></td><td><span class="cat-badge st">ST(HILLS)</span></td><td>2025</td><td>66.00%</td><td>12th</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>BCA</strong></td><td><span class="cat-badge st">EWS</span></td><td>2025</td><td>84.67%</td><td>12th</td><td>Reserved</td></tr>
-          <!--BSC CS-->
-          <tr data-cat="gen"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge gen">Unreserved</span></td><td>2025</td><td>84.33%</td><td>12th</td><td>High Competition</td></tr>
-          <tr data-cat="obc"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2025</td><td>83.33%</td><td>12th</td><td>Moderate</td></tr>
-          <tr data-cat="sc"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge sc">SC</span></td><td>2025</td><td>80.67%</td><td>12th</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge st">ST(PLAINS)</span></td><td>2025</td><td>86.67%</td><td>12th</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge st">ST(HILLS)</span></td><td>2025</td><td>79.67%</td><td>12th</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>B.Sc CS</strong></td><td><span class="cat-badge st">EWS</span></td><td>2025</td><td>83.67%</td><td>12th</td><td>Reserved</td></tr>
-          <!--MCA-->
-          <tr data-cat="gen"><td><strong>MCA</strong></td><td><span class="cat-badge gen">Unreserved</span></td><td>2025</td><td>148 / 200</td><td>CPGEE</td><td>Very Competitive</td></tr>
-          <tr data-cat="obc"><td><strong>MCA</strong></td><td><span class="cat-badge obc">OBC</span></td><td>2025</td><td>130 / 200</td><td>CPGEE</td><td>Competitive</td></tr>
-          <tr data-cat="sc"><td><strong>MCA</strong></td><td><span class="cat-badge sc">SC</span></td><td>2025</td><td>110 / 200</td><td>CPGEE</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>MCA</strong></td><td><span class="cat-badge st">ST</span></td><td>2025</td><td>96 / 200</td><td>CPGEE</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>MCA</strong></td><td><span class="cat-badge st">ST(PLAINS)</span></td><td>2025</td><td>52%</td><td>CPGEE</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>MCA</strong></td><td><span class="cat-badge st">ST(HILLS)</span></td><td>2025</td><td>52%</td><td>CPGEE</td><td>Reserved</td></tr>
-          <tr data-cat="st"><td><strong>MCA</strong></td><td><span class="cat-badge st">EWS</span></td><td>2025</td><td>52%</td><td>CPGEE</td><td>Reserved</td></tr>
+
+        <tbody id="cutoff-body">
+
+          <!-- ================= BCA ================= -->
+
+          <tr data-cat="gen">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge gen">Unreserved</span></td>
+            <td>2025</td>
+            <td>87.67%</td>
+            <td>12th</td>
+            <td>High Competition</td>
+          </tr>
+
+          <tr data-cat="ews">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge ews">EWS</span></td>
+            <td>2025</td>
+            <td>84.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="obc">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge obc">OBC</span></td>
+            <td>2025</td>
+            <td>84.33%</td>
+            <td>12th</td>
+            <td>Moderate</td>
+          </tr>
+
+          <tr data-cat="sc">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge sc">SC</span></td>
+            <td>2025</td>
+            <td>85.33%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge st">ST(PLAINS)</span></td>
+            <td>2025</td>
+            <td>76.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge st">ST(HILLS)</span></td>
+            <td>2025</td>
+            <td>66.00%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <!-- ================= BSC CS ================= -->
+
+          <tr data-cat="gen">
+            <td><strong>B.Sc CS</strong></td>
+            <td><span class="cat-badge gen">Unreserved</span></td>
+            <td>2025</td>
+            <td>84.33%</td>
+            <td>12th</td>
+            <td>High Competition</td>
+          </tr>
+
+          <tr data-cat="ews">
+            <td><strong>B.Sc CS</strong></td>
+            <td><span class="cat-badge ews">EWS</span></td>
+            <td>2025</td>
+            <td>83.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="obc">
+            <td><strong>B.Sc CS</strong></td>
+            <td><span class="cat-badge obc">OBC</span></td>
+            <td>2025</td>
+            <td>83.33%</td>
+            <td>12th</td>
+            <td>Moderate</td>
+          </tr>
+
+          <tr data-cat="sc">
+            <td><strong>B.Sc CS</strong></td>
+            <td><span class="cat-badge sc">SC</span></td>
+            <td>2025</td>
+            <td>80.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>B.Sc CS</strong></td>
+            <td><span class="cat-badge st">ST(PLAINS)</span></td>
+            <td>2025</td>
+            <td>86.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>B.Sc CS</strong></td>
+            <td><span class="cat-badge st">ST(HILLS)</span></td>
+            <td>2025</td>
+            <td>79.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <!-- ================= MCA ================= -->
+
+          <tr data-cat="gen">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge gen">Unreserved</span></td>
+            <td>2025</td>
+            <td>148 / 200</td>
+            <td>CPGEE</td>
+            <td>Very Competitive</td>
+          </tr>
+
+          <tr data-cat="ews">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge ews">EWS</span></td>
+            <td>2025</td>
+            <td>52%</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="obc">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge obc">OBC</span></td>
+            <td>2025</td>
+            <td>130 / 200</td>
+            <td>CPGEE</td>
+            <td>Competitive</td>
+          </tr>
+
+          <tr data-cat="sc">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge sc">SC</span></td>
+            <td>2025</td>
+            <td>110 / 200</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge st">ST(PLAINS)</span></td>
+            <td>2025</td>
+            <td>52%</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge st">ST(HILLS)</span></td>
+            <td>2025</td>
+            <td>52%</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
         </tbody>
+
       </table>
+
     </div>
 
     <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
       <i class="fa-solid fa-circle-info"></i>
-      Cutoff data is indicative. MCA cutoffs are primarily based on CPGEE scores (out of 200). Official data is published on the Cotton University admission portal.
+      Cutoff data is indicative. MCA cutoffs are primarily based on
+      CPGEE scores (out of 200). Official data is published on the
+      Cotton University admission portal.
     </p>
+
+  </div>
+</section>
+
 
     <!-- MCA Cutoff Download Banner -->
     <div class="mca-cutoff-download-wrap reveal">
