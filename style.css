@@ -648,6 +648,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .btn-official:hover { background: rgba(14,165,233,0.28); border-color: rgba(14,165,233,0.7); transform: translateY(-3px); color: var(--white); }
 
+/*PLACEMENT CELL*/
+.qlb-btn.placement-cell-btn {
+  background: rgba(124,58,237,0.08);
+  color: #7c3aed;
+  border-color: rgba(124,58,237,0.20);
+}
+
+.qlb-btn.placement-cell-btn:hover {
+  background: rgba(124,58,237,0.16);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(124,58,237,0.20);
+}
+
+[data-theme="dark"] .qlb-btn.placement-cell-btn {
+  color: #c4b5fd;
+  border-color: rgba(124,58,237,0.35);
+}
+
+
+
+
 /* ── Quick Links Bar (below program cards) ────────────────── */
 .quick-links-bar {
   display: flex; align-items: center; justify-content: center;
