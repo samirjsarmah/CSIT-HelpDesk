@@ -238,50 +238,120 @@ function filterTable() {
   });
 }
 
-/* ── MCA Cutoff Download ─────────────────────────────────── */
 document.getElementById('mca-cutoff-download')?.addEventListener('click', function () {
+
   const btn = this;
-  const orig = btn.innerHTML;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing PDF...';
+  const originalText = btn.innerHTML;
+
+  // Loading State
+  btn.innerHTML =
+    '<i class="fa-solid fa-spinner fa-spin"></i> Preparing PDF...';
+
   btn.disabled = true;
 
   setTimeout(() => {
-    // Generate a simple CSV/text data as a downloadable file (real scenario: link to hosted PDF)
-    const cutoffData = `MCA Cutoff Marks - Cotton University (2025)
-===========================================
-Category          Score (out of 200)   Percentage
---------------------------------------------------
-Unreserved        148 / 200            74%
-OBC               130 / 200            65%
-SC                110 / 200            55%
-ST                96 / 200             48%
-ST (Plains)       104 / 200            52%
-ST (Hills)        104 / 200            52%
-EWS               104 / 200            52%
 
-Source: Cotton University Admission Portal
-Exam: CPGEE (Cotton University Post Graduate Entrance Examination)
-Mode: Offline OMR | Total Marks: 200 | Duration: 2 Hours
-Negative Marking: -0.25 per wrong answer
+    const { jsPDF } = window.jspdf;
 
-Note: Data is indicative. Official cutoffs published on the Cotton University portal.
-    `;
-    const blob = new Blob([cutoffData], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'MCA_Cutoff_CottonUniversity_2025.txt';
-    a.click();
-    URL.revokeObjectURL(url);
+    // Create PDF
+    const doc = new jsPDF();
 
-    btn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+    // Title
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("MCA Cutoff Marks - Cotton University (2025)", 20, 20);
+
+    // Subtitle
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text("CPGEE Admission Cutoff Details", 20, 30);
+
+    // Table Header
+    doc.setFont("helvetica", "bold");
+
+    doc.text("Category", 20, 50);
+    doc.text("Score", 90, 50);
+    doc.text("Percentage", 150, 50);
+
+    // Divider Line
+    doc.line(20, 54, 190, 54);
+
+    // Table Data
+    doc.setFont("helvetica", "normal");
+
+    const data = [
+      ["Unreserved", "148 / 200", "74%"],
+      ["OBC", "130 / 200", "65%"],
+      ["SC", "110 / 200", "55%"],
+      ["ST", "96 / 200", "48%"],
+      ["ST (Plains)", "104 / 200", "52%"],
+      ["ST (Hills)", "104 / 200", "52%"],
+      ["EWS", "104 / 200", "52%"]
+    ];
+
+    let y = 65;
+
+    data.forEach(row => {
+      doc.text(row[0], 20, y);
+      doc.text(row[1], 90, y);
+      doc.text(row[2], 150, y);
+
+      y += 10;
+    });
+
+    // Footer Info
+    y += 10;
+
+    doc.setFontSize(10);
+
+    doc.text(
+      "Source: Cotton University Admission Portal",
+      20,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Exam: CPGEE | Total Marks: 200 | Duration: 2 Hours",
+      20,
+      y
+    );
+
+    y += 8;
+
+    doc.text(
+      "Negative Marking: -0.25 per wrong answer",
+      20,
+      y
+    );
+
+    y += 12;
+
+    doc.setTextColor(120);
+
+    doc.text(
+      "Note: Data is indicative. Official cutoffs published on the Cotton University portal.",
+      20,
+      y,
+      { maxWidth: 170 }
+    );
+
+    // Download PDF
+    doc.save("mca_cutoff.pdf");
+
+    // Success State
+    btn.innerHTML =
+      '<i class="fa-solid fa-check"></i> Downloaded!';
+
     setTimeout(() => {
-      btn.innerHTML = orig;
+      btn.innerHTML = originalText;
       btn.disabled = false;
     }, 2500);
-  }, 1200);
-});
 
+  }, 1200);
+
+});
 /* ── Notices Section ─────────────────────────────────────── */
 const noticesData = [
   {
@@ -507,40 +577,118 @@ document.querySelectorAll('.pyq-program-btn').forEach(btn => {
 renderPYQ();
 
 /* ── Visitor Counter ─────────────────────────────────────── */
+
 const COUNTER_NS = 'cotton-csit-helpdesk';
 
+let counterLoaded = false;
+
 async function initVisitors() {
+
+  // Prevent multiple API calls
+  if (counterLoaded) return;
+  counterLoaded = true;
+
   try {
-    const res  = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NS}/total-visitors/up`);
-    const data = await res.json();
-    const total = data.count || 1;
+
+    const response = await fetch(
+      `https://api.counterapi.dev/v1/${COUNTER_NS}/total-visitors/up`
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch counter');
+    }
+
+    const data = await response.json();
+
+    const total = Number(data.count) || 1;
+
     animateCount('count-total', total, 1800);
-  } catch (err) {
-    console.warn('Counter error:', err);
-    const fallback = parseInt(localStorage.getItem('cu_total') || '4820');
+
+    // Save fallback locally
+    localStorage.setItem('cu_total', total);
+
+  } catch (error) {
+
+    console.warn('Visitor Counter Error:', error);
+
+    // Local fallback
+    const fallback =
+      Number(localStorage.getItem('cu_total')) || 4820;
+
     animateCount('count-total', fallback, 1800);
   }
 }
 
-function animateCount(id, target, duration) {
+/* ── Smooth Number Animation ─────────────────────────────── */
+
+function animateCount(id, target, duration = 1500) {
+
   const el = document.getElementById(id);
+
   if (!el) return;
-  const start = performance.now();
-  const ease  = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
-  function step(now) {
-    const p = Math.min((now-start)/duration, 1);
-    el.textContent = Math.floor(ease(p)*target).toLocaleString();
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = target.toLocaleString();
+
+  const startTime = performance.now();
+
+  const easing = t =>
+    t < 0.5
+      ? 2 * t * t
+      : -1 + (4 - 2 * t) * t;
+
+  function update(currentTime) {
+
+    const progress = Math.min(
+      (currentTime - startTime) / duration,
+      1
+    );
+
+    const currentValue = Math.floor(
+      easing(progress) * target
+    );
+
+    el.textContent = currentValue.toLocaleString();
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = target.toLocaleString();
+    }
   }
-  requestAnimationFrame(step);
+
+  requestAnimationFrame(update);
 }
 
-const visitorObs = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) { initVisitors(); visitorObs.disconnect(); }
-}, { threshold: 0.3 });
-const visitorsSection = document.getElementById('visitors');
-if (visitorsSection) visitorObs.observe(visitorsSection);
+/* ── Load Counter When Visible ───────────────────────────── */
+
+const visitorsSection =
+  document.getElementById('visitors');
+
+if (visitorsSection) {
+
+  const visitorObserver =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            initVisitors();
+
+            visitorObserver.disconnect();
+          }
+
+        });
+
+      },
+
+      {
+        threshold: 0.3
+      }
+    );
+
+  visitorObserver.observe(visitorsSection);
+}
 
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
