@@ -585,44 +585,40 @@ const counterElement =
 
 async function loadVisitors() {
 
-  if (!counterElement) return;
+  console.log("Visitor counter started");
 
   try {
 
-    const response = await fetch(
-      'https://api.countapi.xyz/hit/cotton-csit-helpdesk/visits'
-    );
+    const url =
+      'https://api.countapi.xyz/hit/cotton-csit-helpdesk/visits';
 
-    if (!response.ok) {
-      throw new Error('Counter API failed');
-    }
+    console.log("Fetching:", url);
+
+    const response = await fetch(url);
+
+    console.log("Response:", response);
 
     const data = await response.json();
 
-    const total = data.value || 1;
+    console.log("Data:", data);
 
-    animateCounter(total);
+    const total = data.value;
 
-    // Save backup
-    localStorage.setItem(
-      'cu_total_visitors',
-      total
-    );
+    counterElement.textContent =
+      total.toLocaleString();
 
   } catch (error) {
 
-    console.error(error);
+    console.error("COUNTER ERROR:", error);
 
-    // Fallback value
-    const saved =
-      localStorage.getItem(
-        'cu_total_visitors'
-      ) || 4820;
-
-    animateCounter(Number(saved));
+    counterElement.textContent = "ERROR";
   }
 }
 
+window.addEventListener(
+  'DOMContentLoaded',
+  loadVisitors
+);
 /* ═══════════════════════════════════════════════════════
    ANIMATION
 ═══════════════════════════════════════════════════════ */
