@@ -358,7 +358,7 @@ const noticesData = [
     id: 1,
     tag: 'Admission',
     tagColor: 'blue',
-    date: '12 May 2026',
+    date: '11 May 2026',
 
     // MOVED TITLE & BODY HERE
     title: 'Notice regarding PG Admission 2026',
@@ -721,3 +721,4 @@ document.querySelectorAll('.btn-download').forEach(btn => {
 /* ── Init ────────────────────────────────────────────────── */
 updateCarousel();
 parallaxOnScroll();
+
