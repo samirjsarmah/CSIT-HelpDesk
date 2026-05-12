@@ -579,39 +579,50 @@ renderPYQ();
 /* ── Visitor Counter ─────────────────────────────────────── */
 
 const COUNTER_NS = 'cotton-csit-helpdesk';
+const COUNTER_KEY = 'total-visitors';
 
 let counterLoaded = false;
 
 async function initVisitors() {
 
-  // Prevent multiple API calls
   if (counterLoaded) return;
   counterLoaded = true;
 
+  const counterEl = document.getElementById('count-total');
+
+  if (!counterEl) return;
+
   try {
 
-    const response = await fetch(
-      `https://api.counterapi.dev/v1/${COUNTER_NS}/total-visitors/up`
-    );
+    // Add cache-busting timestamp
+    const url =
+      `https://api.counterapi.dev/v1/${COUNTER_NS}/${COUNTER_KEY}/up?t=${Date.now()}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      cache: 'no-store'
+    });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch counter');
+      throw new Error(`HTTP ${response.status}`);
     }
 
     const data = await response.json();
 
-    const total = Number(data.count) || 1;
+    console.log('Counter API Response:', data);
+
+    const total = Number(data.count || data.value || 1);
 
     animateCount('count-total', total, 1800);
 
-    // Save fallback locally
+    // Backup locally
     localStorage.setItem('cu_total', total);
 
-  } catch (error) {
+  } catch (err) {
 
-    console.warn('Visitor Counter Error:', error);
+    console.error('Visitor Counter Error:', err);
 
-    // Local fallback
+    // Fallback value
     const fallback =
       Number(localStorage.getItem('cu_total')) || 4820;
 
@@ -627,25 +638,15 @@ function animateCount(id, target, duration = 1500) {
 
   if (!el) return;
 
-  const startTime = performance.now();
+  const start = performance.now();
 
-  const easing = t =>
-    t < 0.5
-      ? 2 * t * t
-      : -1 + (4 - 2 * t) * t;
+  function update(now) {
 
-  function update(currentTime) {
+    const progress = Math.min((now - start) / duration, 1);
 
-    const progress = Math.min(
-      (currentTime - startTime) / duration,
-      1
-    );
+    const value = Math.floor(progress * target);
 
-    const currentValue = Math.floor(
-      easing(progress) * target
-    );
-
-    el.textContent = currentValue.toLocaleString();
+    el.textContent = value.toLocaleString();
 
     if (progress < 1) {
       requestAnimationFrame(update);
@@ -657,38 +658,40 @@ function animateCount(id, target, duration = 1500) {
   requestAnimationFrame(update);
 }
 
-/* ── Load Counter When Visible ───────────────────────────── */
+/* ── Load Counter ────────────────────────────────────────── */
 
-const visitorsSection =
-  document.getElementById('visitors');
+window.addEventListener('DOMContentLoaded', () => {
 
-if (visitorsSection) {
+  const visitorsSection =
+    document.getElementById('visitors');
 
-  const visitorObserver =
-    new IntersectionObserver(
+  if (!visitorsSection) {
+    initVisitors();
+    return;
+  }
 
-      entries => {
+  const observer = new IntersectionObserver(
 
-        entries.forEach(entry => {
+    entries => {
 
-          if (entry.isIntersecting) {
+      entries.forEach(entry => {
 
-            initVisitors();
+        if (entry.isIntersecting) {
 
-            visitorObserver.disconnect();
-          }
+          initVisitors();
 
-        });
+          observer.disconnect();
+        }
+      });
+    },
 
-      },
+    {
+      threshold: 0.3
+    }
+  );
 
-      {
-        threshold: 0.3
-      }
-    );
-
-  visitorObserver.observe(visitorsSection);
-}
+  observer.observe(visitorsSection);
+});
 
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
