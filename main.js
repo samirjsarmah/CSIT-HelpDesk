@@ -576,122 +576,91 @@ document.querySelectorAll('.pyq-program-btn').forEach(btn => {
 /* ── Init ──────────────────────────────────────────────── */
 renderPYQ();
 
-/* ── Visitor Counter ─────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   VISITOR COUNTER
+═══════════════════════════════════════════════════════ */
 
-const COUNTER_NS = 'cotton-csit-helpdesk';
-const COUNTER_KEY = 'total-visitors';
+const counterElement =
+  document.getElementById('count-total');
 
-let counterLoaded = false;
+async function loadVisitors() {
 
-async function initVisitors() {
-
-  if (counterLoaded) return;
-  counterLoaded = true;
-
-  const counterEl = document.getElementById('count-total');
-
-  if (!counterEl) return;
+  if (!counterElement) return;
 
   try {
 
-    // Add cache-busting timestamp
-    const url =
-      `https://api.counterapi.dev/v1/${COUNTER_NS}/${COUNTER_KEY}/up?t=${Date.now()}`;
-
-    const response = await fetch(url, {
-      method: 'GET',
-      cache: 'no-store'
-    });
+    const response = await fetch(
+      'https://api.countapi.xyz/hit/cotton-csit-helpdesk/visits'
+    );
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error('Counter API failed');
     }
 
     const data = await response.json();
 
-    console.log('Counter API Response:', data);
+    const total = data.value || 1;
 
-    const total = Number(data.count || data.value || 1);
+    animateCounter(total);
 
-    animateCount('count-total', total, 1800);
+    // Save backup
+    localStorage.setItem(
+      'cu_total_visitors',
+      total
+    );
 
-    // Backup locally
-    localStorage.setItem('cu_total', total);
+  } catch (error) {
 
-  } catch (err) {
-
-    console.error('Visitor Counter Error:', err);
+    console.error(error);
 
     // Fallback value
-    const fallback =
-      Number(localStorage.getItem('cu_total')) || 4820;
+    const saved =
+      localStorage.getItem(
+        'cu_total_visitors'
+      ) || 4820;
 
-    animateCount('count-total', fallback, 1800);
+    animateCounter(Number(saved));
   }
 }
 
-/* ── Smooth Number Animation ─────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   ANIMATION
+═══════════════════════════════════════════════════════ */
 
-function animateCount(id, target, duration = 1500) {
+function animateCounter(target) {
 
-  const el = document.getElementById(id);
+  let current = 0;
 
-  if (!el) return;
+  const duration = 1800;
 
-  const start = performance.now();
+  const increment =
+    target / (duration / 16);
 
-  function update(now) {
+  const timer = setInterval(() => {
 
-    const progress = Math.min((now - start) / duration, 1);
+    current += increment;
 
-    const value = Math.floor(progress * target);
+    if (current >= target) {
 
-    el.textContent = value.toLocaleString();
+      current = target;
 
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      el.textContent = target.toLocaleString();
+      clearInterval(timer);
     }
-  }
 
-  requestAnimationFrame(update);
+    counterElement.textContent =
+      Math.floor(current).toLocaleString();
+
+  }, 16);
 }
 
-/* ── Load Counter ────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   LOAD WHEN PAGE READY
+═══════════════════════════════════════════════════════ */
 
-window.addEventListener('DOMContentLoaded', () => {
-
-  const visitorsSection =
-    document.getElementById('visitors');
-
-  if (!visitorsSection) {
-    initVisitors();
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-
-    entries => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-          initVisitors();
-
-          observer.disconnect();
-        }
-      });
-    },
-
-    {
-      threshold: 0.3
-    }
-  );
-
-  observer.observe(visitorsSection);
-});
+window.addEventListener(
+  'DOMContentLoaded',
+  loadVisitors
+);
 
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
