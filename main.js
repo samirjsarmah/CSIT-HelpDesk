@@ -580,84 +580,43 @@ renderPYQ();
    VISITOR COUNTER
 ═══════════════════════════════════════════════════════ */
 
-const counterElement =
-  document.getElementById('count-total');
+const counterElement = document.getElementById('count-total');
 
 async function loadVisitors() {
-
-  console.log("Visitor counter started");
-
   try {
+    // counterapi.dev is the active replacement for countapi.xyz
+    const response = await fetch(
+      'https://api.counterapi.dev/v1/cotton-csit-helpdesk/visits/up'
+    );
 
-    const url =
-      'https://api.countapi.xyz/hit/cotton-csit-helpdesk/visits';
-
-    console.log("Fetching:", url);
-
-    const response = await fetch(url);
-
-    console.log("Response:", response);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
     const data = await response.json();
-
-    console.log("Data:", data);
-
-    const total = data.value;
-
-    counterElement.textContent =
-      total.toLocaleString();
+    animateCounter(data.count);          // ← was never called before
 
   } catch (error) {
-
-    console.error("COUNTER ERROR:", error);
-
-    counterElement.textContent = "ERROR";
+    console.error('COUNTER ERROR:', error);
+    if (counterElement) counterElement.textContent = '—';
   }
 }
 
-window.addEventListener(
-  'DOMContentLoaded',
-  loadVisitors
-);
-/* ═══════════════════════════════════════════════════════
-   ANIMATION
-═══════════════════════════════════════════════════════ */
-
 function animateCounter(target) {
-
+  if (!counterElement) return;          // ← guard added
   let current = 0;
-
   const duration = 1800;
-
-  const increment =
-    target / (duration / 16);
-
+  const increment = target / (duration / 16);
   const timer = setInterval(() => {
-
     current += increment;
-
     if (current >= target) {
-
       current = target;
-
       clearInterval(timer);
     }
-
-    counterElement.textContent =
-      Math.floor(current).toLocaleString();
-
+    counterElement.textContent = Math.floor(current).toLocaleString();
   }, 16);
 }
 
-/* ═══════════════════════════════════════════════════════
-   LOAD WHEN PAGE READY
-═══════════════════════════════════════════════════════ */
-
-window.addEventListener(
-  'DOMContentLoaded',
-  loadVisitors
-);
-
+// Single DOMContentLoaded listener (you had it duplicated before)
+window.addEventListener('DOMContentLoaded', loadVisitors);
 /* ── Testimonials Carousel ───────────────────────────────── */
 let testIdx = 0;
 const track = document.querySelector('.testimonials-track');
