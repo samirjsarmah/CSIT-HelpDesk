@@ -289,90 +289,61 @@ const noticesData = [
     tag: 'Admission',
     tagColor: 'blue',
     date: '12 May 2026',
-    title: 'MCA Admission 2026: Notice regarding PG Admission 2026',
-    
+
+    // MOVED TITLE & BODY HERE
+    title: 'Notice regarding PG Admission 2026',
+    body: 'MCA Admission 2026',
+
     link: 'https://cottonuniversity.ac.in/index_post_details?p=2700'
   },
-
-
-  // {
-  //   id: 2,
-  //   tag: 'Admission',
-  //   tagColor: 'blue',
-  //   date: '05 May 2025',
-  //   title: 'BCA & B.Sc CS Admission 2025-26: Merit List Schedule',
-  //   body: 'The first merit list for BCA and B.Sc Computer Science will be published on 15 June 2025. Students are advised to keep checking the official portal.',
-  //   important: true,
-  //   link: 'https://www.cottonuniversity.ac.in'
-  // },
-
-
-  // {
-  //   id: 3,
-  //   tag: 'Exam',
-  //   tagColor: 'gold',
-  //   date: '28 Apr 2025',
-  //   title: 'End Semester Examination Schedule — Even Semester 2024-25',
-  //   body: 'The timetable for Even Semester End Semester Examinations has been released. Students must download their admit cards from the student portal before the exam.',
-  //   important: false,
-  //   link: '#'
-  // },
-
-
-  // {
-  //   id: 4,
-  //   tag: 'Event',
-  //   tagColor: 'teal',
-  //   date: '20 Apr 2025',
-  //   title: 'TechFest 2025 — Registration Open',
-  //   body: 'The Annual Technical Festival of CSIT Department is scheduled for 10–12 June 2025. Registrations for coding contests, hackathons, and workshops are now open.',
-  //   important: false,
-  //   link: '#'
-  // },
-
-
-  // {
-  //   id: 5,
-  //   tag: 'Scholarship',
-  //   tagColor: 'green',
-  //   date: '12 Apr 2025',
-  //   title: 'Post-Matric Scholarship 2024-25: Last Date Extended',
-  //   body: 'The last date for submission of Post-Matric Scholarship applications has been extended to 30 April 2025. SC/ST/OBC students are urged to apply immediately.',
-  //   important: false,
-  //   link: '#'
-  // },
-
-
-  // {
-  //   id: 6,
-  //   tag: 'Placement',
-  //   tagColor: 'purple',
-  //   date: '05 Apr 2025',
-  //   title: 'Campus Recruitment Drive — Wipro Technologies',
-  //   body: 'Wipro Technologies will conduct a campus recruitment drive on 20 May 2025 for final year MCA students. Eligible students must register through the Training & Placement Cell.',
-  //   important: false,
-  //   link: '#'
-  // }
 ];
 
 function renderNotices(filter = 'all') {
   const container = document.getElementById('notices-container');
   if (!container) return;
-  const filtered = filter === 'all' ? noticesData : noticesData.filter(n => n.tag.toLowerCase() === filter.toLowerCase());
+
+  const filtered = filter === 'all'
+    ? noticesData
+    : noticesData.filter(n => n.tag.toLowerCase() === filter.toLowerCase());
+
   if (filtered.length === 0) {
-    container.innerHTML = `<div class="notice-empty"><i class="fa-solid fa-bell-slash"></i><p>No notices in this category.</p></div>`;
+    container.innerHTML = `
+      <div class="notice-empty">
+        <i class="fa-solid fa-bell-slash"></i>
+        <p>No notices in this category.</p>
+      </div>
+    `;
     return;
   }
+
   container.innerHTML = filtered.map(n => `
     <div class="notice-card reveal ${n.important ? 'notice-important' : ''}">
-      ${n.important ? '<div class="notice-important-ribbon"><i class="fa-solid fa-star"></i> Important</div>' : ''}
+      
+      ${n.important
+        ? '<div class="notice-important-ribbon"><i class="fa-solid fa-star"></i> Important</div>'
+        : ''
+      }
+
       <div class="notice-top">
-        <span class="notice-tag tag-${n.tagColor}">${n.tag}</span>
-        <span class="notice-date"><i class="fa-regular fa-calendar"></i> ${n.date}</span>
+        <span class="notice-tag tag-${n.tagColor}">
+          ${n.tag}
+        </span>
+
+        <span class="notice-date">
+          <i class="fa-regular fa-calendar"></i> ${n.date}
+        </span>
       </div>
+
+      <!-- BODY MOVED ABOVE -->
+      <p class="notice-body">${n.body || ''}</p>
+
+      <!-- TITLE MOVED BELOW -->
       <h3 class="notice-title">${n.title}</h3>
-      <p class="notice-body">${n.body}</p>
-      <a href="${n.link}" target="_blank" class="notice-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+
+      <a href="${n.link}" target="_blank" class="notice-link">
+        Read More <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
     </div>
   `).join('');
 
@@ -380,18 +351,20 @@ function renderNotices(filter = 'all') {
   container.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 }
 
-// Notice filter tabs
+/* Notice filter tabs */
 document.querySelectorAll('.notice-filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.notice-filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.notice-filter-btn')
+      .forEach(b => b.classList.remove('active'));
+
     btn.classList.add('active');
+
     renderNotices(btn.dataset.filter);
   });
 });
 
-// Init notices
+/* Init notices */
 renderNotices('all');
-
 /* ── Documents Accordion ─────────────────────────────────── */
 document.querySelectorAll('.doc-program-header').forEach(header => {
   header.addEventListener('click', () => {
