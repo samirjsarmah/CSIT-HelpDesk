@@ -26,8 +26,7 @@ Font Awesome
 Contributors
 Developed by students of the CS & IT Department:
 
-Samir J Sarmah
-Koushik Choudhury
+Samir J Sarmah and Koushik Choudhury
 
 Disclaimer
 This is an independent student project and is not the official website of Cotton University.
