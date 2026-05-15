@@ -453,7 +453,7 @@ const pyqData = [
     subject: 'cpgee',
     title: 'CPGEE PYQ Question Paper',
     desc: 'Official previous year entrance examination paper.',
-    link: 'https://drive.google.com/drive/folders/1I-Ba5ONj48Fo2EqhF-TPHuU3R7gcoCdV'
+    link: 'CPGEE-2021-MCA.pdf'
   },
 
   {
