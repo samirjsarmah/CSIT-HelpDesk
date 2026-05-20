@@ -1245,7 +1245,7 @@ section { padding: 5.5rem 0; }
   box-shadow: var(--shadow-glass-lg);
   border: 1px solid var(--chrome-border);
   transition: transform var(--t-spring), box-shadow var(--t);
-  min-height: 220px;
+  min-height: 320px;
   cursor: default;
 }
 .lab-image-card:hover {
@@ -1254,7 +1254,7 @@ section { padding: 5.5rem 0; }
 }
 .lab-image-card img {
   width: 100%;
-  height: 220px;
+  height: 320px;
   object-fit: cover;
   display: block;
   filter: brightness(0.78) saturate(1.1);
