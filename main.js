@@ -456,6 +456,14 @@ const pyqData = [
     link: 'CPGEE-2021-MCA.pdf'
   },
 
+   {
+    program: 'mca',
+    subject: 'cpgee',
+    title: 'CPGEE Question Paper 2023',
+    desc: 'Official previous year entrance examination paper.',
+    link: 'CPGEE_2023__MCA.pdf'
+  },
+
 {
     program: 'mca',
     subject: 'cpgee',
