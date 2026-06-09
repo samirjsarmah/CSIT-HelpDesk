@@ -376,7 +376,7 @@ const noticesData = [
     body: 'MCA Admission 2026',
 
     link: 'PGadmission2026_GenInfoandguideline.pdf'
-}
+},
    {
     id: 3,
     tag: 'Admission',
