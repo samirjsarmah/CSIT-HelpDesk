@@ -366,6 +366,17 @@ const noticesData = [
 
     link: 'https://cottonuniversity.ac.in/index_post_details?p=2700'
   },
+  {
+    id: 2,
+    tag: 'Admission',
+    tagColor: 'blue',
+    date: '09 June 2026',
+
+    title: 'PG Admission General Info 2026',
+    body: 'MCA Admission 2026',
+
+    pdf: 'PG admission 2026_Gen Info and guideline.pdf'
+}
 ];
 
 function renderNotices(filter = 'all') {
