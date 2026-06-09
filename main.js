@@ -375,7 +375,18 @@ const noticesData = [
     title: 'PG Admission General Info 2026',
     body: 'MCA Admission 2026',
 
-    pdf: 'PGadmission2026_GenInfoandguideline.pdf'
+    link: 'PGadmission2026_GenInfoandguideline.pdf'
+}
+   {
+    id: 3,
+    tag: 'Admission',
+    tagColor: 'blue',
+    date: '09 June 2026',
+
+    title: 'Details of PG Admission 2026',
+    body: 'MCA Admission 2026',
+
+    link: 'PG Admission 2026_notice.pdf'
 }
 ];
 
