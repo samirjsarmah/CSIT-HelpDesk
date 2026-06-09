@@ -390,13 +390,13 @@ const noticesData = [
 }
    ,
    {
-    id: 3,
+    id: 4,
     tag: 'Admission',
     tagColor: 'blue',
     date: '09 June 2026',
 
     title: 'Details of PG Diploma 2026',
-    body: 'MCA Admission 2026',
+    body: 'PG Diploma 2026',
 
     link: 'PG Diploma_2026 notice.pdf'
 }
