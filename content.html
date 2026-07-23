@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official Help Desk of the Department of Computer Science & Information Technology, Cotton University, Guwahati, Assam." />
+  <meta name="keywords" content="Cotton University, CS IT Help Desk, BCA, BSc Computer Science, MCA, CPGEE, Guwahati, Assam" />
+  <meta name="author" content="Cotton University CSIT Department" />
+  <title>CS &amp; IT Help Desk | Cotton University</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- ═══════════════════════════════════════════════════════
+     DISCLAIMER POPUP
+════════════════════════════════════════════════════════ -->
+<div id="disclaimer-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center;z-index:99999;padding:1rem;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)">
+  <div style="background:#fff;border-radius:12px;border:0.5px solid #e0e0e0;max-width:520px;width:100%;overflow:hidden;animation:dcPopIn .3s cubic-bezier(.34,1.56,.64,1)">
+
+    <!-- Top Banner -->
+    <div style="background:#1a1a2e;padding:1.75rem;display:flex;flex-direction:column;align-items:center;gap:.75rem">
+      <div style="width:56px;height:56px;border-radius:50%;background:rgba(201,162,39,.15);border:1.5px solid rgba(201,162,39,.45);display:flex;align-items:center;justify-content:center">
+        <i class="fa-solid fa-shield-halved" style="font-size:24px;color:#c9a227"></i>
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,.45);margin:0;text-transform:uppercase;letter-spacing:.08em">Important Notice</p>
+      <h2 style="color:#fff;font-size:17px;font-weight:600;margin:0;text-align:center">CS &amp; IT Help Desk · Cotton University</h2>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:1.5rem 1.75rem 1.25rem;display:flex;flex-direction:column;gap:1rem">
+      <div style="background:#fafaf8;border:0.5px solid #e8e8e8;border-left:3px solid #c9a227;padding:1rem 1.1rem;font-size:14px;line-height:1.75;color:#222">
+        This website is managed and controlled by the <strong>students of CSIT</strong> and is <strong>not officially affiliated</strong> with the department or the university. We are not responsible for any misconduct or misinformation circulated through this platform. Please verify all information from the official website. <strong>Thank You!!</strong>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:.6rem">
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#555;line-height:1.6">
+          <i class="fa-solid fa-triangle-exclamation" style="color:#c9a227;margin-top:2px;flex-shrink:0"></i>
+          <span>Information on this site may not reflect the latest updates from the department.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#555;line-height:1.6">
+          <i class="fa-solid fa-globe" style="color:#c9a227;margin-top:2px;flex-shrink:0"></i>
+          <span>Always cross-check admission details, cutoffs, and notices at <strong>csit.cottonuniversity.ac.in</strong>.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#555;line-height:1.6">
+          <i class="fa-solid fa-users" style="color:#c9a227;margin-top:2px;flex-shrink:0"></i>
+          <span>Built voluntarily by students to help peers — use it as a guide, not a final authority.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:0 1.75rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:.75rem">
+      <button onclick="document.getElementById('disclaimer-overlay').style.display='none';sessionStorage.setItem('dc_seen','1')"
+              style="width:100%;padding:.8rem 1.5rem;background:#1a1a2e;color:#c9a227;border:1.5px solid rgba(201,162,39,.4);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.03em">
+        <i class="fa-solid fa-check"></i>&nbsp; I Understand, Continue to Website
+      </button>
+      <p style="font-size:11.5px;color:#888;text-align:center;margin:0">
+        Official site: <a href="https://csit.cottonuniversity.ac.in" target="_blank" style="color:#2563b0">csit.cottonuniversity.ac.in</a>
+        &nbsp;·&nbsp;
+        <a href="https://cottonuniversity.ac.in" target="_blank" style="color:#2563b0">cottonuniversity.ac.in</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-crest"></div>
+  <div class="loader-text">Cotton University · CS &amp; IT</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION BAR
+════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Cotton University Logo">
+    </div>
+    <div id="disclaimer-marquee">
+      <div class="marquee-track">
+        <span class="marquee-text">
+          <i class="ti ti-info-circle"></i>
+          <strong>Notice:</strong> This website is managed and controlled by the students of CSIT and is not officially affiliated with the department or the university.
+        </span>
+        <span class="marquee-text">
+          <i class="ti ti-info-circle"></i>
+          <strong>Notice:</strong> This website is managed and controlled by the students of CSIT and is not officially affiliated with the department or the university.
+        </span>
+      </div>
+    </div>
+    <div class="nav-brand-text">
+      <strong>Cotton University</strong>
+      <span>CS &amp; IT Help Desk</span>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#cutoff">Cutoff</a></li>
+    <li><a href="#syllabus">Syllabus</a></li>
+    <li><a href="#notices">Notices</a></li>
+    <li><a href="#documents">Documents</a></li>
+    <li><a href="#pyq">PYQ</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    
+      
+    <button class="btn-theme" id="theme-toggle" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <button class="btn-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav Drawer -->
+<div id="mobile-nav">
+  <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+  <a href="#courses"><i class="fa-solid fa-graduation-cap"></i> Courses</a>
+  <a href="#cutoff"><i class="fa-solid fa-chart-bar"></i> Cutoff</a>
+  <a href="#syllabus"><i class="fa-solid fa-book-open"></i> Syllabus</a>
+  <a href="#notices"><i class="fa-solid fa-bell"></i> Notices</a>
+  <a href="#documents"><i class="fa-solid fa-folder-open"></i> Documents</a>
+  <a href="#pyq"><i class="fa-solid fa-file-lines"></i> PYQ</a>
+  <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+  <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+  <a href="https://csit.cottonuniversity.ac.in/faculty" target="_blank" rel="noopener"><i class="fa-solid fa-chalkboard-teacher"></i> Faculty</a>
+  <a href="https://csit.cottonuniversity.ac.in" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Official Website</a>
+</div>
+
+<!-- Search Overlay -->
+<div id="search-overlay">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="search-input" placeholder="Search courses, CPGEE, syllabus, faculty…" autofocus />
+    </div>
+    <p class="search-close" id="search-close">Press Esc or click here to close</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO / HOME
+════════════════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-dots"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge reveal">
+        <i class="fa-solid fa-star"></i>
+        NAAC Accredited · A Grade University
+      </div>
+
+      <h1 class="hero-title reveal">
+        Department of<br />
+        <span class="highlight">Computer Science</span><br />
+        &amp; Information Technology
+      </h1>
+
+      <p class="hero-sub reveal">
+        <!--Cotton University, Guwahati — one of North‑East India's premier institutions.
+        Explore programs, resources, and expert academic guidance all in one place.-->
+
+
+
+<p class="hero-sub reveal">
+  <!-- Cotton University, formerly known as Cotton College, is one of the premier public state universities of Assam, located in Guwahati — the gateway to North-East India. Established in 1901, the institution was founded in response to the growing demand for higher education in the region and was named after Sir Henry John Stedman Cotton, who inaugurated the college on 27 May 1901.
+
+  Over the decades, the institution has achieved several historic milestones. Initially affiliated with the University of Calcutta, Cotton College later became a constituent college of Gauhati University in 1948. In 1992, it was recognised as a Centre of Excellence, marking the beginning of postgraduate education at the institution.
+
+  Cotton College State University was established in 2011 through an Act of the Government of Assam. Subsequently, under “The Cotton University Act, 2017,” Cotton University was formed through the unification of Cotton College and Cotton College State University.
+
+  Today, Cotton University stands as a leading centre of higher learning and academic excellence in Assam. The university has been accredited with Grade ‘A’ by the National Assessment and Accreditation Council (NAAC) in its first cycle of assessment as a university. -->
+
+
+Founded in 1901, Cotton University, Guwahati, stands as a symbol of academic excellence and pride in Assam. From its legacy as Cotton College to becoming a prestigious university in 2017, Cotton has built a strong reputation as a premier institution, shaping generations of scholar.
+<br>NAAC Grade ‘A’ accreditation.
+
+
+
+
+</p>
+
+
+
+      </p>
+
+      <div class="hero-typing reveal" id="typing-text"></div>
+
+      <div class="hero-btns reveal">
+        <a href="#courses" class="btn-primary">
+          <i class="fa-solid fa-graduation-cap"></i> Explore Courses
+        </a>
+        <!-- ── PROSPECTUS BUTTON ── -->
+        <a href="prospectus.pdf" download="CottonUniversity_CSIT_Prospectus.pdf" class="btn-prospectus" id="prospectus-btn">
+          <i class="fa-solid fa-file-arrow-down"></i> Download Prospectus
+      
+        <!-- ── OFFICIAL ADMISSION NOTICE BOARD ── -->
+        <a href="https://admissions.cottonuniversity.ac.in/" target="_blank" rel="noopener" class="btn-official">
+          <i class="fa-solid fa-globe"></i> Admission Official Website
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <i class="fa-solid fa-chevron-down"></i>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     QUICK ACCESS CARDS
+════════════════════════════════════════════════════════ -->
+<section id="quick-access">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Programs Offered</span>
+      <h2 class="section-title">Choose Your Path</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="quick-cards">
+      <!-- BCA -->
+      <div class="quick-card bca reveal">
+        <div class="qc-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="qc-title">BCA</div>
+        <div class="qc-sub">Bachelor of Computer Applications</div>
+        <div class="qc-sub">(Self-Financed Course)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 3 Years · 6 Semesters (Regular)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:1rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours with Research)</div>
+        <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6">
+          A comprehensive undergraduate program covering programming, databases, networking, and software development.
+        </p>
+        <p style="font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:1rem">
+          <i class="fa-solid fa-file-pen"></i> Admission on basis of 10+2 Marks
+        </p>
+        <a href="#courses" class="qc-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- B.Sc. CS -->
+      <div class="quick-card bsc reveal" style="transition-delay:.1s">
+        <div class="qc-icon"><i class="fa-solid fa-microchip"></i></div>
+        <div class="qc-title">B.Sc. Computer Science</div>
+        <div class="qc-sub">Bachelor of Science in CS</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 3 Years · 6 Semesters (Regular)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:.4rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours)</div>
+        <div class="qc-badge" style="display:block;margin-bottom:1rem"><i class="fa-solid fa-clock"></i> 4 Years · 8 Semesters (Honours with Research)</div>
+        <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6">
+          Strong theoretical foundation in algorithms, mathematics, AI, and systems programming for science‑oriented learners.
+        </p>
+        <p style="font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:1rem">
+          <i class="fa-solid fa-file-pen"></i> Admission on basis of 10+2 Marks
+        </p>
+        <a href="#courses" class="qc-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- MCA -->
+      <div class="quick-card mca reveal" style="transition-delay:.2s">
+        <div class="qc-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="qc-title">MCA</div>
+        <div class="qc-sub">Master of Computer Applications</div>
+        <div class="qc-badge" style="display:block;margin-bottom:1rem"><i class="fa-solid fa-clock"></i> 2 Years · 4 Semesters</div>
+        <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:.6rem;line-height:1.6">
+          Advanced postgraduate program in software engineering, cloud computing, data science, and enterprise systems.
+        </p>
+        <p style="font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:1rem">
+          <i class="fa-solid fa-file-pen"></i> Admission via CPGEE (Reservation available for Cotton Graduates)
+        </p>
+        <a href="#courses" class="qc-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- ── QUICK LINKS BAR ── -->
+  
+    <div class="quick-links-bar reveal">
+      <a href="https://csit.cottonuniversity.ac.in/department_faculties" target="_blank" rel="noopener" class="qlb-btn faculty-btn">
+        <i class="fa-solid fa-chalkboard-teacher"></i>
+        <span>Faculty Directory</span>
+      </a>
+      <a href="https://csit.cottonuniversity.ac.in/" target="_blank" rel="noopener" class="qlb-btn official-btn">
+        <i class="fa-solid fa-globe"></i>
+        <span>Official CSIT Department Website</span>
+      </a>
+      <a href="prospectus.pdf" download="CottonUniversity_CSIT_Prospectus.pdf" class="qlb-btn prospectus-qlb-btn">
+        <i class="fa-solid fa-file-arrow-down"></i>
+        <span>Download Prospectus</span>
+      </a>
+      <a href="https://cottonuniversity.ac.in/" target="_blank" rel="noopener" class="qlb-btn university-btn">
+        <i class="fa-solid fa-university"></i>
+        <span>Cotton University Official Website</span>
+      </a>
+      <a href="https://cottonuniversity.ac.in/office/index?section=d3F6a28wSTZOcWE4NDBKYWRINVpldz09"
+   target="_blank"
+   rel="noopener"
+   class="qlb-btn placement-cell-btn">
+
+  <i class="fa-solid fa-briefcase"></i>
+
+  <span>Placement Cell Official Website</span>
+</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     COURSES SECTION
+════════════════════════════════════════════════════════ -->
+<section id="courses">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-eyebrow">Academic Programs</span>
+      <h2 class="section-title">Course Details</h2>
+      <div class="divider"></div>
+      <p class="section-desc">
+        Complete information about eligibility, intake, semester subjects,
+        and career opportunities.
+      </p>
+    </div>
+
+    <div class="course-tabs">
+      <button class="tab-btn active" data-tab="bca">BCA</button>
+      <button class="tab-btn" data-tab="bsc">B.Sc. Computer Science</button>
+      <button class="tab-btn" data-tab="mca">MCA</button>
+    </div>
+
+
+    <!-- ── BCA Panel ── -->
+    <div class="course-panel active" id="panel-bca">
+      <div class="course-grid reveal">
+
+        <div class="course-info-card">
+          <div class="cic-header">
+            <h3>BCA</h3>
+            <p>Bachelor of Computer Applications</p>
+            <p>(Self-Financed Course)</p>
+          </div>
+
+          <div class="cic-body">
+            <div class="info-row">
+              <span class="label">Duration</span>
+              <span class="value">3 Yrs / 4 Yrs (Honours)</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Semesters</span>
+              <span class="value">6 (Regular) · 8 (Honours)</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Eligibility</span>
+              <span class="value">
+                10+2 standard pass with minimum 60% aggregate marks or
+                equivalent grade points with pass marks in
+                Mathematics/Applied Mathematics
+                (relaxation of 5% for OBC/MOBC (NCL),
+                SC, ST(P) and ST(H) candidates)
+              </span>
+            </div>
+            <div class="info-row">
+              <span class="label">Intake</span>
+              <span class="value">30 Seats</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Admission</span>
+              <span class="value">10+2 Marks</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Medium</span>
+              <span class="value">English</span>
+            </div>
+          </div>
+        </div><!-- /.course-info-card -->
+
+        <div class="course-details">
+          <div class="detail-card">
+            <h4>
+              <i class="fa-solid fa-info-circle"></i>
+              Course Overview
+            </h4>
+            <p class="detail-body">
+              BCA (Bachelor of Computer Applications) is an undergraduate
+              program available in 3-year (Regular), 4-year Honours,
+              and 4-year Honours with Research variants under the NEP
+              framework. It equips students with fundamental to advanced
+              computing skills through theory, lab sessions, project work,
+              and industry internships covering programming, databases,
+              web technologies, networking, and software engineering.
+            </p>
+          </div>
+
+          <div class="lab-image-card">
+            <img src="lab.jpg" alt="CSIT Computer Lab, Cotton University" />
+            <div class="lab-image-overlay"></div>
+            <span class="lab-image-badge">
+              <i class="fa-solid fa-desktop"></i> Our Lab
+            </span>
+            <div class="lab-image-caption">
+              <div class="lab-image-caption-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div class="lab-image-caption-text">
+                <strong>CSIT Computer Laboratory</strong>
+                <span>Cotton University, Guwahati</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.course-details -->
+
+      </div><!-- /.course-grid -->
+    </div><!-- /#panel-bca -->
+
+
+    <!-- ── B.Sc. CS Panel ── -->
+    <div class="course-panel" id="panel-bsc">
+      <div class="course-grid reveal">
+
+        <div class="course-info-card">
+          <div class="cic-header cic-header--green">
+            <h3>B.Sc. Computer Science</h3>
+            <p>Bachelor of Science in Computer Science</p>
+          </div>
+
+          <div class="cic-body">
+            <div class="info-row">
+              <span class="label">Duration</span>
+              <span class="value">3 Yrs / 4 Yrs (Honours)</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Semesters</span>
+              <span class="value">6 (Regular) · 8 (Honours)</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Eligibility</span>
+              <span class="value">
+                10+2 standard pass with minimum 60% aggregate marks
+                or equivalent grade points with pass marks in
+                Mathematics/Applied Mathematics
+                (relaxation of 5% for OBC/MOBC (NCL),
+                SC, ST(P) and ST(H) candidates)
+              </span>
+            </div>
+            <div class="info-row">
+              <span class="label">Intake</span>
+              <span class="value">20 Seats</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Admission</span>
+              <span class="value">10+2 Marks</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Medium</span>
+              <span class="value">English</span>
+            </div>
+          </div>
+        </div><!-- /.course-info-card -->
+
+        <div class="course-details">
+          <div class="detail-card">
+            <h4>
+              <i class="fa-solid fa-info-circle"></i>
+              Course Overview
+            </h4>
+            <p class="detail-body">
+              B.Sc. Computer Science offers a rigorous science-based
+              curriculum with strong emphasis on mathematical foundations,
+              algorithm analysis, AI, machine learning, and computational
+              theory. Available in Regular (3-year/6-semester),
+              Honours (4-year/8-semester), and Honours with Research variants
+              under NEP. Students gain deep conceptual understanding
+              alongside practical programming skills suitable for
+              research or industry.
+            </p>
+          </div>
+
+          <div class="lab-image-card">
+            <img src="lab.jpg" alt="CSIT Computer Lab, Cotton University" />
+            <div class="lab-image-overlay"></div>
+            <span class="lab-image-badge">
+              <i class="fa-solid fa-desktop"></i> Our Lab
+            </span>
+            <div class="lab-image-caption">
+              <div class="lab-image-caption-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div class="lab-image-caption-text">
+                <strong>CSIT Computer Laboratory</strong>
+                <span>Cotton University, Guwahati</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.course-details -->
+
+      </div><!-- /.course-grid -->
+    </div><!-- /#panel-bsc -->
+
+
+    <!-- ── MCA Panel ── -->
+    <div class="course-panel" id="panel-mca">
+      <div class="course-grid reveal">
+
+        <div class="course-info-card">
+          <div class="cic-header cic-header--gold">
+            <h3>MCA</h3>
+            <p>Master of Computer Applications</p>
+          </div>
+
+          <div class="cic-body">
+            <div class="info-row">
+              <span class="label">Duration</span>
+              <span class="value">2 Years (4 Semesters)</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Eligibility</span>
+              <span class="value">
+                BCA / B.Sc. CS / B.Sc. IT or any Graduate with Math
+                (relaxation of 5% for OBC/MOBC (NCL),
+                SC, ST(P) and ST(H) candidates)
+              </span>
+            </div>
+            <div class="info-row">
+              <span class="label">Intake</span>
+              <span class="value">40 Seats</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Primary Entrance</span>
+              <span class="value">CPGEE (Cotton University)</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Medium</span>
+              <span class="value">English</span>
+            </div>
+          </div>
+        </div><!-- /.course-info-card -->
+
+        <div class="course-details">
+
+          <div class="detail-card">
+            <h4>
+              <i class="fa-solid fa-info-circle"></i>
+              Course Overview
+            </h4>
+            <p class="detail-body">
+              MCA is a 2-year postgraduate program that prepares students
+              for senior technical and managerial roles in the IT industry.
+              It covers advanced software engineering, distributed systems,
+              cloud infrastructure, data science, and enterprise application
+              development with strong emphasis on research and industry projects.
+            </p>
+          </div>
+
+          <div class="detail-card detail-card--gold">
+            <h4>
+              <i class="fa-solid fa-file-pen" style="color:var(--gold)"></i>
+              CPGEE — Primary Admission Entrance
+            </h4>
+            <p class="detail-body" style="margin-bottom:1rem">
+              <strong class="text-default">
+                CPGEE (Cotton University Post Graduate Entrance Examination)
+              </strong>
+              is the primary entrance test for MCA admission,
+              conducted by Cotton University typically in May–June each year.
+            </p>
+
+            <div class="cpgee-grid">
+              <div class="cpgee-cell">
+                <div class="cpgee-label">Exam Mode</div>
+                <div class="cpgee-value">Offline (OMR Based)</div>
+              </div>
+              <div class="cpgee-cell">
+                <div class="cpgee-label">Duration</div>
+                <div class="cpgee-value">90 minutes</div>
+              </div>
+              <div class="cpgee-cell">
+                <div class="cpgee-label">Total Marks</div>
+                <div class="cpgee-value">200 Marks (MCQ)</div>
+              </div>
+              <div class="cpgee-cell">
+                <div class="cpgee-label">Wrong Answer</div>
+                <div class="cpgee-value">−1 per wrong</div>
+              </div>
+              <div class="cpgee-cell">
+                <div class="cpgee-label">Correct Answer</div>
+                <div class="cpgee-value">+4 per right</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="lab-image-card">
+            <img src="lab.jpg" alt="CSIT Computer Lab, Cotton University" />
+            <div class="lab-image-overlay"></div>
+            <span class="lab-image-badge">
+              <i class="fa-solid fa-desktop"></i> Our Lab
+            </span>
+            <div class="lab-image-caption">
+              <div class="lab-image-caption-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div class="lab-image-caption-text">
+                <strong>CSIT Computer Laboratory</strong>
+                <span>Cotton University, Guwahati</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.course-details -->
+
+  </div><!-- /.container -->
+</section>
+<!-- ═══════════════════════════════════════════════════════
+     MODE OF ADMISSION
+════════════════════════════════════════════════════════ -->
+<section id="cutoff">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-eyebrow">Mode of Admission</span>
+      <h6 class="section-title">The admission into Four-Year Undergraduate Programmes (FYUGP) will be conducted only in ONLINE mode through SAMARTH portal on the specified date and time.</h6>
+
+
+       <!-- Official samarth Button -->
+      <div class="official-notice-btn-wrapper">
+        <a href="https://assamadmission.samarth.ac.in/"
+           target="_blank"
+           rel="noopener"
+           class="official-notice-btn">
+          
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Official Portal</span>
+
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+ </div>
+
+  
+
+<!-- ═══════════════════════════════════════════════════════
+     CUTOFF SECTION
+════════════════════════════════════════════════════════ -->
+<section id="cutoff">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-eyebrow">Admission Data</span>
+      <h2 class="section-title">Previous Year Cutoff Marks</h2>
+      <div class="divider"></div>
+      <p class="section-desc">
+        Category-wise cutoff based on 10+2 marks (Best of three) / CPGEE scores and merit.
+        Data shown for 2025 academic year.
+      </p>
+      <p class="section-desc">
+        The admission will be based on the merit list prepared with marks obtained in the best three
+subjects (for BA and BCA) and the best three Science subjects (for BSc) in HS/10+2 examination
+      </p>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="cutoff-controls reveal">
+
+      <div class="filter-group">
+        <button class="filter-btn active" data-cat="all">All Categories</button>
+        <button class="filter-btn" data-cat="gen">General</button>
+        <button class="filter-btn" data-cat="ews">EWS</button>
+        <button class="filter-btn" data-cat="obc">OBC (NCL)</button>
+        <button class="filter-btn" data-cat="sc">SC</button>
+        <button class="filter-btn" data-cat="st">ST</button>
+      </div>
+
+      <input
+        type="text"
+        class="search-input"
+        id="cutoff-search"
+        placeholder="Search Program"
+      />
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap reveal">
+
+      <table class="cutoff-table">
+
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th>Category</th>
+            <th>Year</th>
+            <th>Cutoff</th>
+            <th>Exam</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+
+        <tbody id="cutoff-body">
+
+          <!-- ================= BCA ================= -->
+
+          <tr data-cat="gen">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge gen">Unreserved</span></td>
+            <td>2025</td>
+            <td>87.67%</td>
+            <td>12th</td>
+            <td>High Competition</td>
+          </tr>
+
+          <tr data-cat="ews">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge ews">EWS</span></td>
+            <td>2025</td>
+            <td>84.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="obc">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge obc">OBC (NCL)</span></td>
+            <td>2025</td>
+            <td>84.33%</td>
+            <td>12th</td>
+            <td>Moderate</td>
+          </tr>
+
+          <tr data-cat="sc">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge sc">SC</span></td>
+            <td>2025</td>
+            <td>85.33%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge st">ST(PLAINS)</span></td>
+            <td>2025</td>
+            <td>76.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>BCA</strong></td>
+            <td><span class="cat-badge st">ST(HILLS)</span></td>
+            <td>2025</td>
+            <td>66.00%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <!-- ================= BSC CS ================= -->
+
+          <tr data-cat="gen">
+            <td><strong>B.Sc. CS</strong></td>
+            <td><span class="cat-badge gen">Unreserved</span></td>
+            <td>2025</td>
+            <td>84.33%</td>
+            <td>12th</td>
+            <td>High Competition</td>
+          </tr>
+
+          <tr data-cat="ews">
+            <td><strong>B.Sc. CS</strong></td>
+            <td><span class="cat-badge ews">EWS</span></td>
+            <td>2025</td>
+            <td>83.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="obc">
+            <td><strong>B.Sc. CS</strong></td>
+            <td><span class="cat-badge obc">OBC (NCL)</span></td>
+            <td>2025</td>
+            <td>83.33%</td>
+            <td>12th</td>
+            <td>Moderate</td>
+          </tr>
+
+          <tr data-cat="sc">
+            <td><strong>B.Sc. CS</strong></td>
+            <td><span class="cat-badge sc">SC</span></td>
+            <td>2025</td>
+            <td>80.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>B.Sc. CS</strong></td>
+            <td><span class="cat-badge st">ST(PLAINS)</span></td>
+            <td>2025</td>
+            <td>86.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>B.Sc. CS</strong></td>
+            <td><span class="cat-badge st">ST(HILLS)</span></td>
+            <td>2025</td>
+            <td>79.67%</td>
+            <td>12th</td>
+            <td>Reserved</td>
+          </tr>
+
+          <!-- ================= MCA ================= -->
+
+          <tr data-cat="gen">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge gen">Unreserved</span></td>
+            <td>2025</td>
+            <td>66 / 200</td>
+            <td>CPGEE</td>
+            <td>Very Competitive</td>
+          </tr>
+
+          <tr data-cat="ews">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge ews">EWS</span></td>
+            <td>2025</td>
+            <td>59 / 200</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="obc">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge obc">OBC (NCL)</span></td>
+            <td>2025</td>
+            <td>46 / 200</td>
+            <td>CPGEE</td>
+            <td>Competitive</td>
+          </tr>
+
+          <tr data-cat="sc">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge sc">SC</span></td>
+            <td>2025</td>
+            <td>74 / 200</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge st">ST(PLAINS)</span></td>
+            <td>2025</td>
+            <td>51 / 200</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+          <tr data-cat="st">
+            <td><strong>MCA</strong></td>
+            <td><span class="cat-badge st">ST(HILLS)</span></td>
+            <td>2025</td>
+            <td>73 / 200</td>
+            <td>CPGEE</td>
+            <td>Reserved</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+    UG Merit List is based on the marks obtained in the best three subjects in 10+2
+    </p>
+
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+      Cutoff data is indicative. MCA cutoffs are primarily based on
+      CPGEE scores (out of 200). Official data is published on the
+      Cotton University admission portal.
+    </p>
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+      a) Only Caste/Tribe certificates issued by the Competent Authorities of the Government of Assam will be accepted.
+      <br>
+      b) Caste/ Tribe Certificates issued by other states will not be considered valid for admission under Reserved Category.
+      <br>
+      c) Candidates who want to seek admission against OBC/MOBC reserve seats must produce the latest Non-Creamy Layer (NCL) certificate issued by competent authorities (within one year) under the Government of Assam, failing of which her/his application will get cancelled.
+      <br>
+      d) A few seats from the OBC/ MOBC (NCL) categories are reserved for the OBC/MOBC (NCL) Sub-communities as per Govt. norms.
+      <br>
+      e) For candidates belonging to the Economically Weaker Sections (EWS), valid Income and Asset Certificate issued only by the Local Circle Officer or Circle Officer (A), stipulated by the Govt of Assam, shall be deemed valid.
+    </p>
+
+  </div>
+</section>
+
+
+    <!-- MCA Cutoff Download Banner -->
+<div class="mca-cutoff-download-wrap reveal">
+
+  <div class="mca-cutoff-dl-text">
+
+    <div class="mca-cutoff-dl-icon">
+      <i class="fa-solid fa-file-arrow-down"></i>
+    </div>
+
+    <div class="mca-cutoff-dl-info">
+      <strong>Download PG Merit List — Official Data</strong>
+      <span>Category-wise CPGEE score cutoffs</span>
+    </div>
+
+  </div>
+
+  <!-- PDF Download Button -->
+  <a
+    href="mca_cutoff.pdf"
+    download="mca_cutoff.pdf"
+    class="mca-cutoff-dl-anchor"
+    id="mca-cutoff-download"
+  >
+    <i class="fa-solid fa-download"></i>
+    Download PG Merit List PDF
+  </a>
+
+</div>
+
+    <!-- BCA BSC CUTOFF PDF  -->
+<div class="mca-cutoff-download-wrap reveal">
+      <div class="mca-cutoff-dl-text">
+        <div class="mca-cutoff-dl-icon">
+          <i class="fa-solid fa-file-arrow-down"></i>
+        </div>
+        <div class="mca-cutoff-dl-info">
+          <strong>Download UG Merit List — Official Data</strong>
+          <span>Category-wise HS score cutoffs </span>
+        </div>
+      </div>
+      <!-- Replace mca_cutoff.pdf with your actual file name -->
+      <a href="https://admissions.cottonuniversity.ac.in/pdf/UG/Provisional_MeritList_Arts_Including_BCA_and_MCJ.pdf"
+   download="MCA_Cutoff_CottonUniversity_2025.pdf"class="mca-cutoff-dl-anchor" id="mca-cutoff-download">
+        <i class="fa-solid fa-download"></i> Download UG Merit List PDF
+      </a>
+
+      
+    </div>
+
+    
+
+  </div>
+  
+
+  
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     NOTICES SECTION
+════════════════════════════════════════════════════════ -->
+<section id="notices">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-eyebrow">Latest Updates</span>
+
+      <h2 class="section-title">
+        Notices &amp; Announcements
+      </h2>
+
+      <div class="divider"></div>
+
+      <p class="section-desc">
+        Stay updated with the latest admission notices, exam schedules,
+        events, and placement drives.
+      </p>
+
+      <p class="section-desc">
+        Check the official Cotton University website for detailed notices.
+      </p>
+
+      <!-- Official Notice Button -->
+      <div class="official-notice-btn-wrapper">
+        <a href="https://cottonuniversity.ac.in/index_latest_news"
+           target="_blank"
+           rel="noopener"
+           class="official-notice-btn">
+          
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Official Notice Portal</span>
+
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+       <!-- Official Admsiion Button -->
+      <div class="official-notice-btn-wrapper">
+        <a href="https://admissions.cottonuniversity.ac.in/"
+           target="_blank"
+           rel="noopener"
+           class="official-notice-btn">
+          
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Official Addmission Notice Portal</span>
+
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="notice-filters">
+      <button class="notice-filter-btn active" data-filter="all">All</button>
+      <button class="notice-filter-btn" data-filter="Admission">Admission</button>
+      <button class="notice-filter-btn" data-filter="Exam">Exam</button>
+      <button class="notice-filter-btn" data-filter="Event">Events</button>
+      <button class="notice-filter-btn" data-filter="Scholarship">Scholarship</button>
+      <button class="notice-filter-btn" data-filter="Placement">Placement</button>
+    </div>
+
+    <!-- Notices Grid -->
+    <div class="notices-grid" id="notices-container">
+      <!-- Rendered by JS -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     DOCUMENTS REQUIRED SECTION
+════════════════════════════════════════════════════════ -->
+<section id="documents">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Admission Essentials</span>
+      <h2 class="section-title">Documents Required</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Complete list of documents needed at the time of admission for each program. Carry originals and self-attested photocopies.</p>
+   
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+    Document requirements may change. Most of the required documents are mentioned here, and the university will publish the official notice with further details.
+    </p>
+    
+    </div>
+
+    <div class="doc-programs">
+
+      <!-- BCA -->
+      <div class="doc-program-item reveal">
+        <div class="doc-program-header">
+          <div class="doc-prog-icon blue"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="doc-prog-info">
+            <div class="doc-prog-name">BCA — Bachelor of Computer Applications</div>
+            <div class="doc-prog-sub">12 documents required at the time of admission</div>
+          </div>
+          <span class="doc-prog-count">12 Docs</span>
+          <div class="doc-prog-chevron"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="doc-program-body">
+          <div class="doc-list">
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-certificate"></i></div><div class="doc-item-text"><div class="doc-item-name">Class X (Matric) Marksheet &amp; Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div><div class="doc-item-note">Board examination marksheet and pass certificate</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-certificate"></i></div><div class="doc-item-text"><div class="doc-item-name">Class XII (Higher Secondary) Marksheet &amp; Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div><div class="doc-item-note">Must show Mathematics as a subject</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-id-card"></i></div><div class="doc-item-text"><div class="doc-item-name">Admit Card (Class XII) <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">Board admit card as secondary proof of identity &amp; marks</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon orig"><i class="fa-solid fa-user"></i></div><div class="doc-item-text"><div class="doc-item-name">Aadhaar Card <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">Self-attested photocopy. Original for verification only.</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-image"></i></div><div class="doc-item-text"><div class="doc-item-name">Recent Passport-Size Photographs <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">6 copies, white background, taken within last 3 months</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-file-shield"></i></div><div class="doc-item-text"><div class="doc-item-name">Caste/Category Certificate <span class="doc-req-badge optional">If applicable</span></div><div class="doc-item-note">SC/ST/OBC/EWS certificate issued by competent authority (Assam Govt.)</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-map-pin"></i></div><div class="doc-item-text"><div class="doc-item-name">Permanent Resident Certificate (PRC) / Domicile Certificate <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">Required for Assam domicile / NE resident status</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-file-invoice"></i></div><div class="doc-item-text"><div class="doc-item-name">Character Certificate <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">From last attended school/college, Principal-signed</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-file-circle-check"></i></div><div class="doc-item-text"><div class="doc-item-name">Transfer Certificate (TC/Migration Certificate) <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">From the school/institution last attended</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-money-bill-wave"></i></div><div class="doc-item-text"><div class="doc-item-name">Admission Fee Payment Receipt <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">Online payment receipt from Cotton University admission portal</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-landmark"></i></div><div class="doc-item-text"><div class="doc-item-name">Bank Passbook / Account Details <span class="doc-req-badge optional">Optional</span></div><div class="doc-item-note">Required for scholarship registration (SBI/nationalized bank preferred)</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-trophy"></i></div><div class="doc-item-text"><div class="doc-item-name">Sports / Extra-Curricular Certificates <span class="doc-req-badge optional">Optional</span></div><div class="doc-item-note">For Sports quota applicants. National / State level certificates.</div></div></div>
+          </div>
+          <div class="doc-note-box"><strong><i class="fa-solid fa-circle-info"></i> Important:</strong> Carry <strong>2 sets of self-attested photocopies</strong> of all documents along with originals. Documents submitted are non-returnable.</div>
+        </div>
+      </div>
+
+      <!-- B.Sc CS -->
+      <div class="doc-program-item reveal" style="transition-delay:.1s">
+        <div class="doc-program-header">
+          <div class="doc-prog-icon green"><i class="fa-solid fa-microchip"></i></div>
+          <div class="doc-prog-info">
+            <div class="doc-prog-name">B.Sc. Computer Science</div>
+            <div class="doc-prog-sub">Same documents as BCA — 12 documents required</div>
+          </div>
+          <span class="doc-prog-count">12 Docs</span>
+          <div class="doc-prog-chevron"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="doc-program-body">
+          <div class="doc-list">
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-certificate"></i></div><div class="doc-item-text"><div class="doc-item-name">Class X Marksheet &amp; Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div><div class="doc-item-note">Board examination marksheet and pass certificate</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-certificate"></i></div><div class="doc-item-text"><div class="doc-item-name">Class XII Marksheet &amp; Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div><div class="doc-item-note">Must include Mathematics. Science stream preferred but not mandatory.</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-id-card"></i></div><div class="doc-item-text"><div class="doc-item-name">Class XII Admit Card <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon orig"><i class="fa-solid fa-user"></i></div><div class="doc-item-text"><div class="doc-item-name">Aadhaar Card <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-image"></i></div><div class="doc-item-text"><div class="doc-item-name">Passport-Size Photographs (6 copies) <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-file-shield"></i></div><div class="doc-item-text"><div class="doc-item-name">Caste/Category Certificate <span class="doc-req-badge optional">If applicable</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-map-pin"></i></div><div class="doc-item-text"><div class="doc-item-name">PRC / Domicile Certificate <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-file-invoice"></i></div><div class="doc-item-text"><div class="doc-item-name">Character Certificate <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-file-circle-check"></i></div><div class="doc-item-text"><div class="doc-item-name">Transfer / Migration Certificate <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-money-bill-wave"></i></div><div class="doc-item-text"><div class="doc-item-name">Admission Fee Receipt <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-landmark"></i></div><div class="doc-item-text"><div class="doc-item-name">Bank Passbook <span class="doc-req-badge optional">Optional</span></div><div class="doc-item-note">For scholarship registration</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-trophy"></i></div><div class="doc-item-text"><div class="doc-item-name">Sports / ECA Certificates <span class="doc-req-badge optional">Optional</span></div></div></div>
+          </div>
+          <div class="doc-note-box"><strong><i class="fa-solid fa-circle-info"></i> Note:</strong> Documents required for B.Sc CS are the same as BCA. Carry originals and 2 sets of self-attested photocopies.</div>
+        </div>
+      </div>
+
+      <!-- MCA -->
+      <div class="doc-program-item reveal" style="transition-delay:.2s">
+        <div class="doc-program-header">
+          <div class="doc-prog-icon gold"><i class="fa-solid fa-server"></i></div>
+          <div class="doc-prog-info">
+            <div class="doc-prog-name">MCA — Master of Computer Applications</div>
+            <div class="doc-prog-sub">14 documents required — includes graduation &amp; CPGEE documents</div>
+          </div>
+          <span class="doc-prog-count">14 Docs</span>
+          <div class="doc-prog-chevron"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="doc-program-body">
+          <div class="doc-list">
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-certificate"></i></div><div class="doc-item-text"><div class="doc-item-name">Class X Marksheet &amp; Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-certificate"></i></div><div class="doc-item-text"><div class="doc-item-name">Class XII Marksheet &amp; Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-graduation-cap"></i></div><div class="doc-item-text"><div class="doc-item-name">Graduation Degree / Provisional Certificate <span class="doc-req-badge mandatory">Mandatory</span><span class="doc-req-badge original">Original</span></div><div class="doc-item-note">BCA / B.Sc CS / B.Sc IT or any graduate degree with Mathematics</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-list-ol"></i></div><div class="doc-item-text"><div class="doc-item-name">All Semester Marksheets (Graduation) <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">All semester/year marksheets from the undergraduate program</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-file-pen"></i></div><div class="doc-item-text"><div class="doc-item-name">CPGEE Admit Card <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">Printed admit card used for the CPGEE examination</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-star"></i></div><div class="doc-item-text"><div class="doc-item-name">CPGEE Score Card / Rank Letter <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">Official score/rank issued by Cotton University after result declaration</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon orig"><i class="fa-solid fa-user"></i></div><div class="doc-item-text"><div class="doc-item-name">Aadhaar Card <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-image"></i></div><div class="doc-item-text"><div class="doc-item-name">Passport-Size Photographs (6 copies) <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">White background, taken within last 3 months</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-file-shield"></i></div><div class="doc-item-text"><div class="doc-item-name">Caste/Category Certificate <span class="doc-req-badge optional">If applicable</span></div><div class="doc-item-note">SC/ST/OBC/EWS — issued by Circle Officer or equivalent</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon req"><i class="fa-solid fa-map-pin"></i></div><div class="doc-item-text"><div class="doc-item-name">PRC / Domicile Certificate <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-file-invoice"></i></div><div class="doc-item-text"><div class="doc-item-name">Character Certificate <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">From Principal of last attended institution</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-file-circle-check"></i></div><div class="doc-item-text"><div class="doc-item-name">Migration Certificate <span class="doc-req-badge mandatory">Mandatory</span></div><div class="doc-item-note">From undergraduate university (not required for Cotton University graduates)</div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-money-bill-wave"></i></div><div class="doc-item-text"><div class="doc-item-name">Admission Fee Payment Receipt <span class="doc-req-badge mandatory">Mandatory</span></div></div></div>
+            <div class="doc-item"><div class="doc-item-icon opt"><i class="fa-solid fa-landmark"></i></div><div class="doc-item-text"><div class="doc-item-name">Bank Passbook / Account Details <span class="doc-req-badge optional">Optional</span></div><div class="doc-item-note">For scholarship and stipend registration</div></div></div>
+          </div>
+          <div class="doc-note-box"><strong><i class="fa-solid fa-circle-info"></i> Cotton University Graduates:</strong> Students who completed BCA/B.Sc CS from Cotton University are <strong>exempted from the Migration Certificate</strong>. Internal reservation seats are available for Cotton graduates in MCA — CPGEE is still required.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PREVIOUS YEAR PAPERS SECTION
+════════════════════════════════════════════════════════ -->
+<section id="pyq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Exam Preparation</span>
+      <h2 class="section-title">Previous Year Question Papers</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Download official CPGEE papers and semester question papers for BCA, B.Sc CS, and MCA.</p>
+    </div>
+
+    <div class="pyq-controls reveal">
+      <div class="pyq-filter-row">
+        <span class="pyq-filter-label">Program</span>
+        <div class="pyq-filter-group">
+          <button class="pyq-program-btn active" data-prog="all">All</button>
+          <button class="pyq-program-btn" data-prog="mca">MCA</button>
+          <button class="pyq-program-btn" data-prog="bca">BCA</button>
+          <button class="pyq-program-btn" data-prog="bsc">B.Sc CS</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="pyq-container">
+      <!-- Rendered by JS -->
+    </div>
+
+    <p style="text-align:center;margin-top:2rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+      Question papers are provided for preparation purposes. Official papers are available from the Cotton University CSIT Department office.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SYLLABUS SECTION
+════════════════════════════════════════════════════════ -->
+<section id="syllabus">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Academic Content</span>
+      <h2 class="section-title">Syllabus &amp; Curriculum</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Download semester-wise syllabi in PDF format. Click any card to expand subject details.</p>
+  
+
+ <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--text-muted)">
+      <i class="fa-solid fa-circle-info"></i>
+    CPGEE syllabus is based on previous years’ exams and is not fully structured, as the official syllabus is not available from the university. So, kindly recheck the official notifications for more information.
+    </p>
+      
+  </div>
+
+    <div class="syllabus-grid">
+
+      
+      <!-- BCA -->
+      <div class="syl-card reveal">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon blue"><i class="fa-solid fa-laptop-code"></i></div>
+            <div>
+              <div class="syl-title">BCA</div>
+              <div class="syl-sem">All Semesters</div>
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+          <div class="syl-actions">
+            <a href="https://csit.cottonuniversity.ac.in/dept_all_course?course=31" target="_blank" class="btn-download">
+              <i class="fa-solid fa-file-pdf"></i> Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- B.Sc CS -->
+      <div class="syl-card reveal" style="transition-delay:.1s">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon green"><i class="fa-solid fa-microchip"></i></div>
+            <div>
+              <div class="syl-title">B.Sc CS</div>
+              <div class="syl-sem">All Semesters</div>
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+          <div class="syl-actions">
+            <a href="https://csit.cottonuniversity.ac.in/dept_all_course?course=31" target="_blank" class="btn-download">
+              <i class="fa-solid fa-file-pdf"></i> Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCA -->
+      <div class="syl-card reveal" style="transition-delay:.2s">
+        <div class="syl-card-header">
+          <div class="syl-card-left">
+            <div class="syl-icon gold"><i class="fa-solid fa-server"></i></div>
+            <div>
+              <div class="syl-title">MCA</div>
+              <div class="syl-sem">All Semesters</div>
+            </div>
+          </div>
+          <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="syl-body">
+          <div class="syl-actions">
+            <a href="https://csit.cottonuniversity.ac.in/dept_all_course?course=61" target="_blank" class="btn-download">
+              <i class="fa-solid fa-file-pdf"></i> Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CPGEE Entrance Syllabus -->
+      <div class="syl-card reveal" style="transition-delay:.3s; border-top:3px solid var(--gold);">
+  <div class="syl-card-header">
+    <div class="syl-card-left">
+      <div class="syl-icon" style="background:linear-gradient(135deg,#92400e,#c9a227);color:#fff">
+        <i class="fa-solid fa-file-pen"></i>
+      </div>
+      <div>
+        <div class="syl-title">CPGEE Entrance Syllabus</div>
+        <div class="syl-sem">Thinking · Mathematics · Computer</div>
+      </div>
+    </div>
+    <div class="syl-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+  </div>
+
+  <div class="syl-body">
+
+    <div style="margin:1rem 1.5rem .5rem;padding:.9rem 1.1rem;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.3);border-radius:10px;font-size:.82rem;color:var(--text-muted);line-height:1.7">
+      <strong style="color:var(--text);display:block;margin-bottom:.3rem">
+        <i class="fa-solid fa-clipboard-list" style="color:var(--gold);margin-right:.4rem"></i>
+        Exam Pattern at a Glance
+      </strong>
+
+      200 MCQ Questions &nbsp;·&nbsp;
+      200 Total Marks &nbsp;·&nbsp;
+      Duration: 2 Hours &nbsp;·&nbsp;
+      Offline OMR Mode &nbsp;·&nbsp;
+      Negative Marking Applicable
+    </div>
+
+
+    <!-- Thinking and Decision Making -->
+    <div style="padding:.75rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#be123c">
+      <i class="fa-solid fa-brain" style="margin-right:.35rem"></i>
+      Thinking & Decision Making
+    </div>
+
+    <div class="syl-subjects">
+
+      <div class="syl-subject-item">
+        <span class="sub-name">Geometrical designs &amp; Identification</span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">Selection of related letters / words / numbers / figures</span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">Identification of odd thing / item out from a group</span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">Completion of numerical series based on pattern / logic</span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">Fill in the blanks of the series based on numerical pattern and logic</span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">Syllogisms (logic-based questions), identification of logic and selection of correct answers</span>
+      </div>
+
+    </div>
+
+
+
+    <!-- Mathematics -->
+    <div style="padding:.5rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)">
+      <i class="fa-solid fa-square-root-variable" style="margin-right:.35rem"></i>
+      Mathematics
+    </div>
+
+    <div class="syl-subjects">
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Set Theory: Union, Intersection, Cardinality, Elementary counting, permutations and combinations
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Probability &amp; Statistics: Basic concepts of probability theory, average, dependent and independent events, frequency distributions
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Algebra: equations, functions, logarithms, arithmetic, geometric and harmonic progressions, determinants and matrices
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Coordinate Geometry: Rectangular Cartesian coordinates, distance formula, equations of line, circle, parabola, ellipse and hyperbola
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Calculus: limits, continuity, differentiation, maxima-minima, integration by substitution and partial fractions
+        </span>
+      </div>
+
+    </div>
+
+
+
+    <!-- Computer -->
+    <div style="padding:.5rem 1.5rem .2rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#059669">
+      <i class="fa-solid fa-laptop-code" style="margin-right:.35rem"></i>
+      Computer
+    </div>
+
+    <div class="syl-subjects">
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Operating System: Main functions of operating systems, processes, threads, CPU scheduling, deadlock, memory management and virtual memory
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Data Structure: Arrays, stacks, queues, linked lists, trees, graphs, searching and sorting algorithms, hashing
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Digital Fundamentals: Data types, number systems and conversion, complements, fixed point representation
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Boolean Algebra, logic gates, flip-flops, sequential circuits and integrated circuits
+        </span>
+      </div>
+
+      <div class="syl-subject-item">
+        <span class="sub-name">
+          Multiplexers, registers and counters, memory unit
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     VISITOR COUNTER
+════════════════════════════════════════════════════════ -->
+<section id="visitors">
+  <div class="container">
+
+    <div class="section-header" style="margin-bottom:2.5rem">
+      <h2 class="section-title" style="color:#fff">
+        Website Statistics
+      </h2>
+
+      <p style="color:rgba(255,255,255,.7);font-size:1rem">
+        Live visitor tracking
+      </p>
+    </div>
+
+    <div class="visitors-grid"
+         style="grid-template-columns:1fr;
+                max-width:260px;
+                margin:0 auto;">
+
+      <div class="visitor-item reveal">
+
+        <div class="visitor-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="visitor-number" id="count-total">
+          Loading...
+        </div>
+
+        <div class="visitor-label">
+          Total Visitors
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════════════════════════════════════════════
+     FAQ SECTION
+════════════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Help Center</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Quick answers to the most common queries from prospective and current students.</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item open reveal">
+        <div class="faq-q">What is CPGEE and how do I apply for MCA admission? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>CPGEE (Cotton University Post Graduate Entrance Examination) is the primary entrance test for MCA admission, conducted by Cotton University usually in May–June. It is an offline OMR-based exam with 200 MCQ questions covering Mathematics, Computer Fundamentals &amp; Programming, DBMS, Networking &amp; OS, and General Aptitude — totalling 200 marks with −1 negative marking and +4 for correct answer. Apply through the official Cotton University admission portal.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.05s">
+        <div class="faq-q">What is the eligibility for BCA admission at Cotton University? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Candidates must have passed 10+2 standard pass with minimum 60% aggregate marks or equivalent grade points with pass marks in Mathematics/Applied Mathematics.
+ candidates. Admission is through class XII (12th) marks.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <div class="faq-q">Is the MCA admission through NIMCET or CPGEE or CUET? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>No, Cotton University primarily uses CPGEE (its own entrance) for MCA admissions. Check the official university portal for each year's notification.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.15s">
+        <div class="faq-q">What is the CPGEE syllabus and exam pattern? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>CPGEE has 5 sections: (A) Mathematics — 50 marks covering calculus, algebra, probability; (B) Computer Fundamentals &amp; Programming — 60 marks covering C, data structures, algorithms; (C) DBMS — 30 marks covering SQL, normalization, transactions; (D) Networking &amp; OS — 30 marks covering TCP/IP, process management; (E) General Aptitude — 30 marks covering reasoning &amp; verbal ability. Total: 200 marks, 200 MCQs, 1.5 hours, offline OMR mode, −1 negative marking.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.2s">
+        <div class="faq-q">What is the annual fee structure for BCA, B.Sc. CS, and MCA? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Being a central university, Cotton University maintains affordable fee structures: BCA (Self Financed Course): approximately ₹22,500 (FIRST SEM), ₹14,500 EVEN SEM &amp; ₹19,200 ODD SEM &amp; B.Sc CS: approximately ₹8,000 . MCA: approximately ₹14,000–18,000 per annum. Additional charges include laboratory, library, and sports fees. Please visit the official Cotton University website for updated fee details.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.25s">
+        <div class="faq-q">Does the department offer placement assistance? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>Yes! The department has an active Placement &amp; career counseling Cell conducting mock interviews, resume-building workshops, and coding bootcamps. Companies like TCS, ICICI BANK, HDFC BANK, OIL INDIA and various startups recruit from campus.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:.3s">
+        <div class="faq-q">What programming languages and technologies are taught? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a">
+          <p>The curriculum covers: C, C++, Java, Python, PHP, JavaScript for programming; MySQL, MongoDB, Oracle for databases; HTML/CSS, React basics for web; AWS &amp; Google Cloud for cloud computing; TensorFlow &amp; scikit-learn for ML; Android for mobile development.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WhatsApp Group Button ───────────────────────── -->
+<div class="pyq-whatsapp">
+  
+  <a href="https://chat.whatsapp.com/Kk6bJ8FSwxWK1krZps6fnG"
+     target="_blank"
+     class="pyq-whatsapp-btn">
+
+    <i class="fa-brands fa-whatsapp"></i>
+    Join our WhatsApp Group for more info
+
+  </a>
+
+</div>
+
+
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h2 class="section-title">Contact the Help Desk</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item reveal">
+          <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="ci-text">
+            <div class="label">Address</div>
+            <div class="value">Dept. of CS &amp; IT, Cotton University<br/>Panbazar, Guwahati – 781001<br/>Assam, India</div>
+          </div>
+        </div>
+
+        <!-- Quick External Links in Contact -->
+        <div class="contact-ext-links reveal" style="transition-delay:.1s">
+          <a href="https://csit.cottonuniversity.ac.in/department_faculties" target="_blank" rel="noopener" class="ext-link-btn faculty-ext">
+            <div class="ext-link-icon"><i class="fa-solid fa-chalkboard-teacher"></i></div>
+            <div class="ext-link-text">
+              <span class="ext-link-label">Faculty Directory</span>
+              <span class="ext-link-sub">Meet our professors &amp; staff</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square ext-arrow"></i>
+          </a>
+          <a href="https://csit.cottonuniversity.ac.in/index" target="_blank" rel="noopener" class="ext-link-btn official-ext">
+            <div class="ext-link-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="ext-link-text">
+              <span class="ext-link-label">Official CSIT Website</span>
+              <span class="ext-link-sub">csit.cottonuniversity.ac.in</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square ext-arrow"></i>
+          </a>
+          <a href="https://cottonuniversity.ac.in" target="_blank" rel="noopener" class="ext-link-btn university-ext">
+            <div class="ext-link-icon"><i class="fa-solid fa-university"></i></div>
+            <div class="ext-link-text">
+              <span class="ext-link-label">Cotton University</span>
+              <span class="ext-link-sub">cottonuniversity.ac.in</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square ext-arrow"></i>
+          </a>
+          <a href="prospectus.pdf" download="CottonUniversity_CSIT_Prospectus.pdf" class="ext-link-btn prospectus-ext">
+            <div class="ext-link-icon"><i class="fa-solid fa-file-arrow-down"></i></div>
+            <div class="ext-link-text">
+              <span class="ext-link-label">Download Prospectus</span>
+              <span class="ext-link-sub">Admission prospectus PDF</span>
+            </div>
+            <i class="fa-solid fa-download ext-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="map-wrap reveal" style="transition-delay:.25s">
+     <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.3!2d91.7362!3d26.1863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a5912fbef85b7%3A0x5d97a0e4b6e35d24!2sCotton%20University!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+          allowfullscreen="" loading="lazy" title="Cotton University Map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p style="margin-top:.75rem">
+          The Department of Computer Science &amp; Information Technology, Cotton University, is committed to excellence in education, research, and innovation in the field of computing.
+        </p>
+        <div class="footer-ext-btns">
+          <a href="https://csit.cottonuniversity.ac.in/department_faculties" target="_blank" rel="noopener" class="footer-ext-btn">
+            <i class="fa-solid fa-chalkboard-teacher"></i> Faculty
+          </a>
+          <a href="https://csit.cottonuniversity.ac.in/index" target="_blank" rel="noopener" class="footer-ext-btn">
+            <i class="fa-solid fa-globe"></i> Official Site
+          </a>
+          <a href="prospectus.pdf" download="CottonUniversity_CSIT_Prospectus.pdf" class="footer-ext-btn footer-prospectus-btn">
+            <i class="fa-solid fa-file-arrow-down"></i> Prospectus
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <a href="#courses">BCA</a>
+        <a href="#courses">B.Sc Computer Science</a>
+        <a href="#courses">MCA</a>
+        <a href="#syllabus">Syllabus</a>
+        <a href="#cutoff">Cutoff Marks</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#notices">Notices &amp; Updates</a>
+        <a href="#documents">Documents Required</a>
+        <a href="#pyq">Previous Year Papers</a>
+        <a href="#syllabus">CPGEE Syllabus</a>
+        <a href="#faq">FAQs</a>
+        <a href="prospectus.pdf" download="CottonUniversity_CSIT_Prospectus.pdf">Prospectus PDF</a>
+      </div>
+
+  <div class="footer-col">
+  <h4>Quick Links</h4>
+
+  <a href="https://csit.cottonuniversity.ac.in/"
+     target="_blank"
+     rel="noopener">
+    <i class="fa-solid fa-globe"></i>
+    <span>CSIT Website</span>
+  </a>
+
+  <a href="https://csit.cottonuniversity.ac.in/department_faculties"
+     target="_blank"
+     rel="noopener">
+    <i class="fa-solid fa-users"></i>
+    <span>Faculty Directory</span>
+  </a>
+
+  <a href="https://cottonuniversity.ac.in/index_page_details?page=NmdBS2drTXdVRjlqNThkS0tiRnJuQT09&title=placem"
+     target="_blank"
+     rel="noopener">
+    <i class="fa-solid fa-briefcase"></i>
+    <span>Placement Cell</span>
+  </a>
+
+  <a href="https://cottonuniversity.ac.in/"
+     target="_blank"
+     rel="noopener">
+    <i class="fa-solid fa-building-columns"></i>
+    <span>Cotton University</span>
+  </a>
+
+  <a href="#contact">
+    <i class="fa-solid fa-envelope"></i>
+    <span>Contact Us</span>
+  </a>
+</div>
+   <div class="footer-bottom">
+  <span>© 2025 All rights reserved.</span>
+
+  <span>
+    Developed by students 
+    <a href="https://github.com/samirjsarmah" target="_blank" rel="noopener">
+      SJS
+    </a> 
+    &amp; 
+    <a href="https://github.com/KoushikCh98" target="_blank" rel="noopener">
+      KC
+    </a>
+  </span>
+</div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FLOATING WIDGETS
+════════════════════════════════════════════════════════ -->
+
+<!-- Chat Toggle -->
+<button id="chat-toggle" aria-label="Open Help Chat">
+  <i class="fa-solid fa-comments"></i>
+</button>
+
+<!-- Chat Box -->
+<div id="chat-box">
+  <div class="chat-header">
+    <div>
+      <h4><i class="fa-solid fa-robot"></i> CS &amp; IT Help Bot</h4>
+      <span>🟢 Online · Replies instantly</span>
+    </div>
+    <span class="chat-close" id="chat-close-btn">✕</span>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">👋 Hello! I'm the Cotton University CS &amp; IT Help Bot. Ask me about CPGEE, admissions, courses, cutoffs, or anything else!</div>
+    <div class="chat-msg bot">Quick links: <strong>Courses · CPGEE Syllabus · Cutoff · Contact</strong></div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Type your question…" />
+    <button class="chat-send" id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- Back to Top -->
+<button id="back-top" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- Custom JS -->
+<script src="main.js"></script>
+</body>
+</html>
