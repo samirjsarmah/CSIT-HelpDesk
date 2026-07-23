@@ -1,116 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Closed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Closed</title>
+<style>
+  :root{
+    --yellow:#ffc72c;
+    --black:#1c1c1c;
+    --dark:#2b2b2b;
+    --orange:#f7941d;
+    --bg:#f2f1ec;
+    --panel:#ffffff;
+    --text:#1c1c1c;
+    --muted:#6b6a65;
+    --border:#e3e1d8;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{
+    background:var(--bg);
+    background-image:
+      linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size:24px 24px;
+    color:var(--text);
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    min-height:100vh;
+  }
+  .hazard-top, .hazard-bottom{
+    position:fixed;
+    left:0; right:0;
+    height:14px;
+    background:repeating-linear-gradient(
+      135deg,
+      var(--yellow),
+      var(--yellow) 22px,
+      var(--black) 22px,
+      var(--black) 44px
+    );
+    z-index:2;
+  }
+  .hazard-top{top:0;}
+  .hazard-bottom{bottom:0;}
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, Helvetica, sans-serif;
-        }
+  .card{
+    max-width:560px;
+    width:100%;
+    background:var(--panel);
+    border:3px solid var(--black);
+    border-radius:6px;
+    padding:44px 40px 36px;
+    box-shadow:8px 8px 0 var(--black);
+    position:relative;
+  }
 
-        body{
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(135deg,#0f172a,#1e293b);
-            color:#fff;
-        }
+  .tag{
+    position:absolute;
+    top:-18px;
+    left:32px;
+    background:var(--yellow);
+    color:var(--black);
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:6px 16px;
+    border:2px solid var(--black);
+    border-radius:4px;
+    transform:rotate(-2deg);
+  }
 
-        .container{
-            max-width:650px;
-            width:90%;
-            text-align:center;
-            background:rgba(255,255,255,0.08);
-            backdrop-filter:blur(10px);
-            padding:50px 40px;
-            border-radius:20px;
-            border:1px solid rgba(255,255,255,0.15);
-            box-shadow:0 15px 40px rgba(0,0,0,.3);
-        }
+  .icon-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:14px 0 20px;
+  }
+  .icon-box{
+    width:54px;
+    height:54px;
+    background:var(--yellow);
+    border:2px solid var(--black);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .icon-box svg{width:30px;height:30px;stroke:var(--black);}
 
-        h1{
-            font-size:42px;
-            color:#ff4d4d;
-            margin-bottom:20px;
-        }
+  h1{
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0;
+    text-transform:uppercase;
+    line-height:1.25;
+  }
+  h1 span{color:var(--orange);}
 
-        p{
-            font-size:18px;
-            line-height:1.7;
-            color:#ddd;
-        }
+  p.lead{
+    color:var(--muted);
+    line-height:1.65;
+    margin:0 0 28px;
+    font-size:15px;
+  }
 
-        .admins{
-            margin-top:30px;
-            background:rgba(255,255,255,0.08);
-            padding:20px;
-            border-radius:12px;
-        }
+  .divider{
+    height:4px;
+    background:repeating-linear-gradient(
+      90deg,
+      var(--yellow),
+      var(--yellow) 14px,
+      var(--black) 14px,
+      var(--black) 28px
+    );
+    margin:0 0 26px;
+    border-radius:2px;
+  }
 
-        .admins h2{
-            color:#4fc3f7;
-            margin-bottom:15px;
-            font-size:24px;
-        }
+  .contact-label{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--black);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .contact-label::before{
+    content:"";
+    width:18px;
+    height:18px;
+    background:var(--orange);
+    clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+  }
 
-        .admins p{
-            font-size:20px;
-            color:#fff;
-            margin:8px 0;
-            font-weight:600;
-        }
+  .admins{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .admin{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#faf9f5;
+    border:2px solid var(--black);
+    padding:13px 16px;
+    border-radius:6px;
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .admin:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:4px 4px 0 var(--black);
+  }
+  .avatar{
+    width:36px;
+    height:36px;
+    border-radius:6px;
+    background:var(--black);
+    color:var(--yellow);
+    font-size:13px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .admin-info{display:flex;flex-direction:column;}
+  .admin-info span.name{
+    font-size:14.5px;
+    font-weight:800;
+    color:var(--text);
+  }
+  .admin-info span.role{
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    color:var(--orange);
+  }
 
-        footer{
-            margin-top:35px;
-            font-size:14px;
-            color:#aaa;
-        }
-
-        @media(max-width:600px){
-            h1{
-                font-size:32px;
-            }
-
-            p{
-                font-size:16px;
-            }
-
-            .admins p{
-                font-size:18px;
-            }
-        }
-    </style>
+  .foot{
+    margin-top:28px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+  }
+</style>
 </head>
 <body>
+  <div class="hazard-top"></div>
+  <div class="hazard-bottom"></div>
 
-<div class="container">
-
-    <h1>🚧 Website Closed</h1>
-
-    <p>
-        This website has been closed and is currently unavailable.
-        <br><br>
-        For any queries, support, or assistance, please contact one of the administrators listed below.
-    </p>
-
-    <div class="admins">
-        <h2>Administrators</h2>
-
-        <p>👤 Samir J. Sarmah</p>
-        <p>👤 Koushik Choudhury</p>
+  <div class="card">
+    <div class="tag">Site Closed</div>
+    <div class="icon-row">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 20a9 9 0 0 1 18 0"></path>
+          <path d="M12 4v6"></path>
+          <path d="M8 10h8"></path>
+        </svg>
+      </div>
     </div>
-
-    <footer>
-        Thank you for your understanding.
-    </footer>
-
-</div>
-
+    <h1>Website Closed <span>for This Session</span></h1>
+    <p class="lead">This website is currently closed for this session while work is underway. Access will resume shortly. For any queries in the meantime, please contact one of the admins below.</p>
+    <div class="divider"></div>
+    <div class="contact-label">Contact Admin</div>
+    <div class="admins">
+      <div class="admin">
+        <div class="avatar">SJ</div>
+        <div class="admin-info">
+          <span class="name">Samir J Sarmah</span>
+          <span class="role">Administrator</span>
+        </div>
+      </div>
+      <div class="admin">
+        <div class="avatar">KC</div>
+        <div class="admin-info">
+          <span class="name">Koushik Choudhary</span>
+          <span class="role">Administrator</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot">Thank you for your patience</div>
+  </div>
 </body>
 </html>
