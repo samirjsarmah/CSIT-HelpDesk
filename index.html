@@ -157,6 +157,13 @@
     padding:13px 16px;
     border-radius:6px;
     transition:transform 0.12s ease, box-shadow 0.12s ease;
+    min-width:0;
+  }
+  .admin-info{min-width:0;}
+  .admin-info span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
   .admin:hover{
     transform:translate(-2px,-2px);
@@ -197,6 +204,34 @@
     text-transform:uppercase;
     color:var(--muted);
     text-align:center;
+  }
+
+  @media (max-width: 600px){
+    body{padding:16px;}
+    .hazard-top, .hazard-bottom{height:10px;}
+    .card{
+      padding:36px 22px 28px;
+      box-shadow:5px 5px 0 var(--black);
+      border-width:2px;
+    }
+    .tag{
+      left:20px;
+      top:-16px;
+      font-size:10.5px;
+      padding:5px 12px;
+    }
+    .icon-box{width:46px;height:46px;}
+    .icon-box svg{width:24px;height:24px;}
+    h1{font-size:21px;}
+    p.lead{font-size:14px;margin-bottom:24px;}
+    .admin{padding:11px 14px;}
+    .avatar{width:32px;height:32px;font-size:12px;}
+    .admin-info span.name{font-size:13.5px;}
+  }
+
+  @media (max-width: 380px){
+    h1{font-size:19px;}
+    .card{padding:30px 18px 24px;}
   }
 </style>
 </head>
